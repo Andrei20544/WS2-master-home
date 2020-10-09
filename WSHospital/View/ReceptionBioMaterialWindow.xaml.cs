@@ -458,7 +458,7 @@ namespace WSHospital.View
             GetSelectionChange(NamServSpic.SelectedItem, NameServ);
         }
 
-        private void Button_Click_6(object sender, RoutedEventArgs e)
+        private void DopServ_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             using (ModelBD md = new ModelBD())
             {

@@ -67,8 +67,7 @@
                             <Button Width="250" Height="35" HorizontalAlignment="Left" Margin="0 0 10 0" Click="Button_Click_4">Печать</Button>
                             <Button Width="250" Height="35" HorizontalAlignment="Left" Margin="10 0 0 0" FontSize="17" Click="Button_Click_3">Сформировать заказ</Button>
                         </StackPanel>
-
-                        <Button Width="520" Height="25" Margin="0 10 0 0" Click="Button_Click_6"></Button>
+                    
                         <TextBlock Width="520" Height="25" Margin="0 10 0 0" Name="summ"></TextBlock>
 
                     </StackPanel>
@@ -104,7 +103,7 @@
                             <ListBox Width="365" Visibility="Collapsed" Background="#FFF3F3F3" Name="NamServSpic" Panel.ZIndex="5" MaxHeight="120" BorderThickness="1 1 1 1" SelectionChanged="NamServSpic_SelectionChanged"/>
 
                             <Label HorizontalAlignment="Center">Подуслуги</Label>
-                            <ListBox Width="365" Height="210" Background="#FFF3F3F3" Name="DopServ" SelectionMode="Multiple"/>
+                            <ListBox Width="365" Height="210" Background="#FFF3F3F3" Name="DopServ" SelectionMode="Multiple" SelectionChanged="DopServ_SelectionChanged"/>
 
                             <StackPanel Height="30" Margin="0 50 0 0" Orientation="Horizontal" HorizontalAlignment="Center">
                                 <Button Width="280" Height="30"  Click="Button_Click_1" BorderThickness="0">Добавить пациента</Button>
