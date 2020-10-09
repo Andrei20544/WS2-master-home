@@ -1,0 +1,67 @@
+﻿<Window x:Class="WSHospital.View.Order"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WSHospital.View"
+        mc:Ignorable="d"
+        Title="Order" Height="650" Width="500" Background="White">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="Width" Value="355"></Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Width" Value="350"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="Background" Value="#FFEEEEEE"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+
+            <StackPanel x:Name="otch">
+                <Label>Дата заказа</Label>
+                <TextBlock x:Name="OrderDateOne"></TextBlock>
+
+                <Label>Номер заказа</Label>
+                <TextBlock x:Name="OrderNum"></TextBlock>
+
+                <Label>Номер пробирки</Label>
+                <TextBlock x:Name="NumProb"></TextBlock>
+
+                <Label>Номер страхового полиса</Label>
+                <TextBlock x:Name="PoliceNum"></TextBlock>
+
+                <Label>ФИО</Label>
+                <TextBlock x:Name="FIO"></TextBlock>
+
+                <Label>Дата рождения</Label>
+                <TextBlock x:Name="DateOfBirthP"></TextBlock>
+
+                <Label>Перечень услуг</Label>
+                <ListBox Width="350" Height="110" Background="#FFE6E6E6" BorderBrush="#FFBBBBBB" BorderThickness="2" Name="ServCount"></ListBox>
+
+                <Label>Стоимость</Label>
+                <TextBlock x:Name="CostServ"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Height="60" Margin="0 20 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <Button Width="190" Margin="5" Click="Button_Click">Сохранить в PDF</Button>
+                    <Button Width="190" Margin="5" Click="Button_Click_1">ОК</Button>
+                </StackPanel>
+                <Button Height="22" Width="390" Click="Button_Click_2">Сгенерировать ссылку</Button>
+            </StackPanel>
+
+        </StackPanel>
+        
+    </Grid>
+</Window>
