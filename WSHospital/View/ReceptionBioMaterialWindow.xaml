@@ -51,14 +51,14 @@
                     <StackPanel Orientation="Horizontal" Margin="0 20 0 0" Panel.ZIndex="5">
                         <Label Margin="0 0 10 0" Width="175">Код биоматериала</Label>
                         <StackPanel Panel.ZIndex="5">
-                            <TextBox Width="375" Height="35" Name="BioCodeA" TextChanged="BioCode_TextChanged" BorderThickness="1 1 1 1" VerticalContentAlignment="Center" FontSize="16"></TextBox>
+                            <TextBox Width="375" Height="35" Name="BioCodeA" TextChanged="BioCode_TextChanged" BorderThickness="1 1 1 1" VerticalContentAlignment="Center" FontSize="16" MaxLength="5"></TextBox>
                             <!--<ListBox Width="375" Visibility="Visible" Background="Gainsboro" Height="90" Name="spic" Panel.ZIndex="1" MaxHeight="120" SelectionChanged="spic_SelectionChanged" BorderThickness="1 0 1 1"></ListBox>-->
                         </StackPanel>
                     </StackPanel>
 
-                    <ListBox Width="560" Visibility="Collapsed" Background="#FFF3F3F3" Name="spic" Margin="0 0 40 0" Panel.ZIndex="5" MaxHeight="120" SelectionChanged="spic_SelectionChanged" BorderThickness="1 1 1 1"></ListBox>
+                    <ListBox Width="560" Visibility="Hidden" Height="120" Background="#FFF3F3F3" Name="spic" Margin="0 0 40 0" Panel.ZIndex="5" MaxHeight="120" SelectionChanged="spic_SelectionChanged" BorderThickness="1 1 1 1"></ListBox>
 
-                    <StackPanel Width="560" Height="335"  HorizontalAlignment="Left" Margin="0 10 0 0" Panel.ZIndex="0">
+                    <StackPanel Width="560" Height="335"  HorizontalAlignment="Left" Margin="0 -110 0 0" Panel.ZIndex="3">
                         <Border BorderBrush="LightGray" BorderThickness="3" HorizontalAlignment="Center" Panel.ZIndex="0">
                             <Canvas Background="#FFF3F3F3" Height="180" Name="canv" Width="550"></Canvas>
                         </Border>
@@ -94,16 +94,19 @@
 
                             </StackPanel>
 
-                            <ListBox Width="365" Visibility="Collapsed" Background="#FFF3F3F3" Name="FioSpic" Panel.ZIndex="5" MaxHeight="120" BorderThickness="1 1 1 1" SelectionChanged="FioSpic_SelectionChanged"></ListBox>
+                            <ListBox Width="365" Visibility="Hidden" Height="120" Background="#FFF3F3F3" Name="FioSpic" Panel.ZIndex="5" MaxHeight="120" BorderThickness="1 1 1 1" SelectionChanged="FioSpic_SelectionChanged"></ListBox>
 
-                            <Label HorizontalAlignment="Center">Услуги</Label>
-                            <!--<ComboBox Width="365" Height="35" Name="CombServ" VerticalContentAlignment="Center" SelectionChanged="CombServ_SelectionChanged"></ComboBox>-->
+                            <StackPanel Margin="0 -100 0 0">
+                                <Label HorizontalAlignment="Center">Услуги</Label>
+                                <TextBox Width="365" Height="35" Name="NameServ" FontSize="16" VerticalContentAlignment="Center" Background="#FFE4E4E4" TextChanged="NameServ_TextChanged"></TextBox>
+                            </StackPanel>
 
-                            <TextBox Width="365" Height="35" Name="NameServ" FontSize="16" VerticalContentAlignment="Center" Background="#FFE4E4E4" TextChanged="NameServ_TextChanged"></TextBox>
-                            <ListBox Width="365" Visibility="Collapsed" Background="#FFF3F3F3" Name="NamServSpic" Panel.ZIndex="5" MaxHeight="120" BorderThickness="1 1 1 1" SelectionChanged="NamServSpic_SelectionChanged"/>
+                            <ListBox Width="365" Visibility="Hidden" Height="120" Margin="0 -30 0 0" Background="#FFF3F3F3" Name="NamServSpic" Panel.ZIndex="5" MaxHeight="120" BorderThickness="1 1 1 1" SelectionChanged="NamServSpic_SelectionChanged"/>
 
-                            <Label HorizontalAlignment="Center">Подуслуги</Label>
-                            <ListBox Width="365" Height="210" Background="#FFF3F3F3" Name="DopServ" SelectionMode="Multiple" SelectionChanged="DopServ_SelectionChanged"/>
+                            <StackPanel Margin="0 -100 0 0">
+                                <Label HorizontalAlignment="Center">Подуслуги</Label>
+                                <ListBox Width="365" Height="210" Background="#FFF3F3F3" Name="DopServ" SelectionMode="Multiple" SelectionChanged="DopServ_SelectionChanged"/>
+                            </StackPanel>
 
                             <StackPanel Height="30" Margin="0 50 0 0" Orientation="Horizontal" HorizontalAlignment="Center">
                                 <Button Width="280" Height="30"  Click="Button_Click_1" BorderThickness="0">Добавить пациента</Button>
