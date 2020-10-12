@@ -8,7 +8,7 @@ namespace WSHospital
     public partial class ModelBD : DbContext
     {
         public ModelBD()
-            : base("name=ModelBD1")
+            : base("name=ModelBD2")
         {
         }
 
