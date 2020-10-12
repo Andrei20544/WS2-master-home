@@ -60,7 +60,7 @@ namespace WSHospital
             else if (user.RoleID == 2)
             {
                 LookOtch.Visibility = Visibility.Collapsed;
-                CreateSch.Visibility = Visibility.Collapsed;
+                CreateSch.Visibility = Visibility.Visible;
             }
             else
             {
@@ -87,6 +87,12 @@ namespace WSHospital
         private void otch_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void CreateSch_Click(object sender, RoutedEventArgs e)
+        {
+            StrahSch strah = new StrahSch();
+            strah.Show();
         }
     }
 }

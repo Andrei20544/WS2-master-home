@@ -1,0 +1,117 @@
+﻿<Window x:Class="WSHospital.View.StrahSch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WSHospital.View"
+        mc:Ignorable="d"
+        Title="StrahSch" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="BordKey" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
+            <Setter Property="Background" Value="#FFEEEEEE"></Setter>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}"></Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Margin" Value="1 1 0 0" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"></ColumnDefinition>
+            <ColumnDefinition Width="8*"></ColumnDefinition>
+            <ColumnDefinition Width="7*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70*"></RowDefinition>
+            <RowDefinition Height="209*"></RowDefinition>
+            <RowDefinition Height="140*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+
+            <StackPanel>
+                <Label>Company</Label>
+
+                <Border Width="250" Height="28" Background="Black" BorderThickness="1" BorderBrush="#333333">
+                    <Button Style="{StaticResource BordKey}" Name="bord" Click="bord_Click"></Button>
+                </Border>
+
+                <Grid x:Name="CombBoxCust" Visibility="Hidden">
+                    <Polygon Points="30,0,
+                         45,10,
+                         256,10,
+                         256,140,
+                         8,140,
+                         8,10,
+                         15,10" Height="150" Fill="#FF6A6A6A" StrokeThickness="2" Stroke="#FF6A6A6A">
+                    </Polygon>
+
+                    <Polygon Points="30,0,
+                         45,10,
+                         256,10,
+                         256,140,
+                         8,140,
+                         8,10,
+                         15,10" Height="150">
+                        <Polygon.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFCBCBCB" Offset="0"/>
+                                <GradientStop Color="#FFF1F1F1" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Polygon.Fill>
+                    </Polygon>
+
+                    <ListBox Width="250" Height="125" Background="Transparent" Name="ListComp" BorderThickness="0" SelectionChanged="ListComp_SelectionChanged"></ListBox>
+
+                </Grid>
+
+            </StackPanel>
+
+        </Grid>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0 5 0 0">
+
+            <StackPanel Orientation="Horizontal">
+                <Label>Период для оплаты</Label>
+                <TextBox Width="150" Height="28"></TextBox>
+            </StackPanel>
+
+        </StackPanel>
+
+        <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3">
+            <ScrollViewer>
+                <StackPanel Background="#FFE8E2DA">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="250" Height="28">Компания :</Label>
+                        <TextBlock Width="220" Height="28" Name="CompName"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="0 5 0 0">
+                        <Label Width="250" Height="28" HorizontalAlignment="Left">ФИО пациентов с оказанными услугами:</Label>
+                        <ListBox x:Name="ListPat"></ListBox>
+                    </StackPanel>
+                    <StackPanel Margin="0 5 0 0">
+                        <Label Width="250" Height="28" HorizontalAlignment="Left">Стоимость услуг по каждому пациенту:</Label>
+                        <ListBox x:Name="ListPatSum"></ListBox>
+                    </StackPanel>
+
+                    <StackPanel Margin="0 5 0 0" Orientation="Horizontal">
+                        <Label Width="250" Height="28" HorizontalAlignment="Left">Итоговая стоимость:</Label>
+                        <TextBlock x:Name="It" Width="220" Height="28"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+</Window>

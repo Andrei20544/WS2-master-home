@@ -68,18 +68,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\BioMaterial.cs" />
-    <Compile Include="Model\Company.cs" />
-    <Compile Include="Model\LabServices.cs" />
-    <Compile Include="Model\ModelBD.cs" />
-    <Compile Include="Model\NumberAnalyze.cs" />
-    <Compile Include="Model\Orderr.cs" />
-    <Compile Include="Model\Patients.cs" />
-    <Compile Include="Model\Rendering.cs" />
-    <Compile Include="Model\Rolee.cs" />
-    <Compile Include="Model\SetServicee.cs" />
-    <Compile Include="Model\sysdiagrams.cs" />
-    <Compile Include="Model\Users.cs" />
+    <Compile Include="BioMaterial.cs" />
+    <Compile Include="Company.cs" />
+    <Compile Include="LabServices.cs" />
+    <Compile Include="ModelBD.cs" />
+    <Compile Include="NumberAnalyze.cs" />
+    <Compile Include="Orderr.cs" />
+    <Compile Include="Patients.cs" />
+    <Compile Include="Rendering.cs" />
+    <Compile Include="Rolee.cs" />
+    <Compile Include="SetServicee.cs" />
+    <Compile Include="sysdiagrams.cs" />
+    <Compile Include="Users.cs" />
     <Compile Include="View\AddPatient.xaml.cs">
       <DependentUpon>AddPatient.xaml</DependentUpon>
     </Compile>
@@ -91,6 +91,9 @@
     </Compile>
     <Compile Include="View\ReceptionBioMaterialWindow.xaml.cs">
       <DependentUpon>ReceptionBioMaterialWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StrahSch.xaml.cs">
+      <DependentUpon>StrahSch.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
@@ -120,6 +123,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ReceptionBioMaterialWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StrahSch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,7 +162,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\img1.png" />
     <Resource Include="Assets\img10.png" />

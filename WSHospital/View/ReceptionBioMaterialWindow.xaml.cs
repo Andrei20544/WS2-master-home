@@ -131,7 +131,7 @@ namespace WSHospital.View
                     {
                         IDPatient = IdPat.ID,
                         IDService = ServNam.ID,
-                        Status = "IN PROGRESS"
+                        Status = ""
                     };
 
                     md.Orderr.Add(orderr);

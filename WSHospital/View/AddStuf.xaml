@@ -71,7 +71,7 @@
 
             <Rectangle Height="5" Fill="#FFBFBFBF"></Rectangle>
 
-            <Button Width="350" Height="27" Margin="0 10 0 0" Click="Button_Click">Add</Button>
+            <Button Width="350" Height="27" Margin="0 10 0 0">Add</Button>
 
         </StackPanel>
 

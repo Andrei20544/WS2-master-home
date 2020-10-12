@@ -82,7 +82,7 @@
                 <Button x:Name="otch" Click="otch_Click">Сформировать отчеты</Button>
                 <Button x:Name="work">Работа с анализатором</Button>
                 <Button x:Name="LookOtch">Посмотреть отчеты</Button>
-                <Button x:Name="CreateSch">Сформировать счет страховой компании</Button>
+                <Button x:Name="CreateSch" Click="CreateSch_Click">Сформировать счет страховой компании</Button>
             </StackPanel>
         </Border>
     </Grid>
