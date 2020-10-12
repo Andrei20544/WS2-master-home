@@ -32,39 +32,54 @@ namespace WSHospital.View
                                compName = c.Name
                            };
 
-                //var cost = from n in md.NumberAnalyze
-                //           join b in md.BioMaterial on n.IDService equals b.IDSetService
-                //           join ss in md.SetServicee on n.IDService equals ss.ID
-                //           join ls in md.LabServices on ss.ID equals ls.IDSetService
-                //           join p in md.Patients on n.IDPatient equals p.ID
-                //           select new
-                //           {
-                //               NamePat = p.FIO,
-                //               Cost = ls.Cost
-                //           };
+                var cost = from n in md.NumberAnalyze
+                           join b in md.BioMaterial on n.IDService equals b.IDSetService
+                           join ss in md.SetServicee on n.IDService equals ss.ID
+                           join ls in md.LabServices on b.BioName equals ls.Name
+                           join p in md.Patients on n.IDPatient equals p.ID
+                           select new
+                           {
+                               NamePat = p.FIO,
+                               Cost = ls.Cost
+                           };
 
-                var biocost = from setS in md.SetServicee
-                              join LabS in md.LabServices on setS.ID equals LabS.IDSetService
-                              select new
-                              {
 
-                              };
+                var step = from b in md.BioMaterial
+                           join ss in md.SetServicee on b.IDSetService equals ss.ID
+                           join ls in md.LabServices on b.BioName equals ls.Name
+                           select new
+                           {
+                               BioCode = b.BioCode,
+                               NameServ = ls.Name,
+                               CostServ = ls.Cost
+                           };      
+                
+
+
+                foreach(var item in cost.Distinct())
+                {
+                    ListPatSum.Items.Add(item.NamePat + " - " + item.Cost);
+                }
+                
+
+
 
                 foreach (var item in comp)
                 {
                     ListComp.Items.Add(item.compName);
                 }
 
-                foreach (var item in cost)
-                {
-                    ListPatSum.Items.Add(item.NamePat + " - " + item.Cost);
-                }
-
-
                 foreach (var item in list)
                 {
                     ListPat.Items.Add(item.ToString());
                 }
+
+                double? summ = 0;
+                foreach(var item in cost)
+                {
+                    summ += item.Cost;
+                }
+                It.Text = summ.ToString();
             }
         }
 
