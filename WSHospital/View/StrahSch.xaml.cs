@@ -52,13 +52,22 @@ namespace WSHospital.View
                                BioCode = b.BioCode,
                                NameServ = ls.Name,
                                CostServ = ls.Cost
-                           };      
-                
+                           };
 
+                var PatNam = md.Patients.ToList();
 
-                foreach(var item in cost.Distinct())
+                double? summ1 = 0;
+                foreach(var item in PatNam)
                 {
-                    ListPatSum.Items.Add(item.NamePat + " - " + item.Cost);
+                    foreach (var item1 in cost)
+                    {
+                        if (item.FIO == item.FIO)
+                        {
+                            summ1 += item1.Cost;
+                        }
+                    }
+                    ListPatSum.Items.Add(item.FIO + " - " + summ1);
+                    summ1 = 0;
                 }
                 
 
