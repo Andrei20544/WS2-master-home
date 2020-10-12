@@ -20,6 +20,11 @@
             <Setter Property="Width" Value="500"></Setter>
             <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
         </Style>
+
+        <Style TargetType="Button">
+            
+        </Style>
+        
     </Window.Resources>
     <Grid>
         <StackPanel>
@@ -42,7 +47,11 @@
             </Border>
 
             <Border BorderBrush="#FF95A3B2" Margin="0 85 0 0" Height="40" CornerRadius="8" BorderThickness="1" Width="380" Background="#FF95A3B2">
-                <Button Width="370" Height="31" FontSize="17" Background="#FF95A3B2" Click="Button_Click" BorderThickness="0">Sign</Button>
+                <Button Width="370" Height="31" FontSize="17" Background="#FF95A3B2" Click="Button_Click" BorderThickness="0">Sign in</Button>
+            </Border>
+
+            <Border BorderBrush="#FF95A3B2" Margin="0 15 0 0" Height="40" CornerRadius="8" BorderThickness="1" Width="380" Background="#FF95A3B2">
+                <Button Width="370" Height="31" FontSize="17" Background="#FF95A3B2" BorderThickness="0" Click="Button_Click_1">Sign up</Button>
             </Border>
 
         </StackPanel>

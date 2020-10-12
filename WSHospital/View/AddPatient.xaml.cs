@@ -51,6 +51,8 @@ namespace WSHospital.View
 
         }
 
+        public AddPatient() { }
+
         public AddPatient(int id, string shtr)
         {
             InitializeComponent();

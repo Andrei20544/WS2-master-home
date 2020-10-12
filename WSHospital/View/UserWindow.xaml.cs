@@ -41,7 +41,15 @@ namespace WSHospital
 
             AGE.Text = Age.ToString();                   
 
-            Img.Source = GetBitmap();
+            if (GetBitmap() == null)
+            {
+
+            }
+            else
+            {
+                Img.Source = GetBitmap();
+            }
+            
 
             if(user.RoleID == 1)
             {
