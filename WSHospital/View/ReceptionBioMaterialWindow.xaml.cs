@@ -261,7 +261,7 @@ namespace WSHospital.View
 
                 if (BioCodeA.Text == "")
                 {
-                    GetVisibilityListBox(spic, Visibility.Collapsed, BioCodeA, new Thickness(1, 1, 1, 1));
+                    GetVisibilityListBox(spic, Visibility.Hidden, BioCodeA, new Thickness(1, 1, 1, 1));
                 }
                 else if (BioCodeA.Text != "")
                 {
@@ -269,18 +269,13 @@ namespace WSHospital.View
 
                     foreach (var item in BioCodeB)
                     {
-                        if (BioCodeA.Text.Equals(item.BioCode.ToString()))
-                        {
-                            GetVisibilityListBox(spic, Visibility.Collapsed, BioCodeA, new Thickness(1, 1, 1, 1));
-                        }
-                    }
-
-
-
-                    foreach (var item in BioCodeB)
-                    {
                         spic.Items.Add(" " + item.BioCode + " - " + item.BioName);
-                    }
+                    }                 
+                }
+                
+                if (BioCodeA.Text != "" && BioCodeA.Text.Length == 5)
+                {
+                    GetVisibilityListBox(spic, Visibility.Hidden, BioCodeA, new Thickness(1, 1, 1, 1));
                 }
             }
         }
@@ -339,18 +334,12 @@ namespace WSHospital.View
 
                     FioSpic.Items.Clear();
 
-                    if (FIO.Text == "") GetVisibilityListBox(FioSpic, Visibility.Collapsed, FIO, new Thickness(1, 1, 1, 1));
+                    if (FIO.Text == "") GetVisibilityListBox(FioSpic, Visibility.Hidden, FIO, new Thickness(1, 1, 1, 1));
 
                     else if (FIO.Text != "") 
                     {
                         GetVisibilityListBox(FioSpic, Visibility.Visible, FIO, new Thickness(1, 1, 1, 0));
-
-                        foreach (var item in fioPat)
-                        {
-                            if (FIO.Text.Equals(item.FIO.ToString())) GetVisibilityListBox(FioSpic, Visibility.Collapsed, FIO, new Thickness(1, 1, 1, 1));
-                        }
                     }
-
 
                     foreach (var item in fioPat)
                     {
@@ -366,6 +355,14 @@ namespace WSHospital.View
                             }
                         }
                        
+                    }
+
+                    foreach(var items in fioPat)
+                    {
+                        if (FIO.Text != "" && FIO.Text.Equals(items.FIO.ToString()))
+                        {
+                            GetVisibilityListBox(FioSpic, Visibility.Hidden, FIO, new Thickness(1, 1, 1, 1));
+                        }
                     }
                 }
             }
@@ -417,18 +414,12 @@ namespace WSHospital.View
 
                     NamServSpic.Items.Clear();
 
-                    if (NameServ.Text == "") GetVisibilityListBox(NamServSpic, Visibility.Collapsed, NameServ, new Thickness(1, 1, 1, 1));
+                    if (NameServ.Text == "") GetVisibilityListBox(NamServSpic, Visibility.Hidden, NameServ, new Thickness(1, 1, 1, 1));
 
                     else if (NameServ.Text != "")
                     {
                         GetVisibilityListBox(NamServSpic, Visibility.Visible, NameServ, new Thickness(1, 1, 1, 0));
-
-                        foreach (var item in NamServ)
-                        {
-                            if (NameServ.Text.Equals(item.ServName.ToString())) GetVisibilityListBox(NamServSpic, Visibility.Collapsed, NameServ, new Thickness(1, 1, 1, 1));
-                        }
                     }
-
 
                     foreach (var item in NamServ)
                     {
@@ -444,6 +435,14 @@ namespace WSHospital.View
                             }
                         }
 
+                    }
+
+                    foreach(var items in NamServ)
+                    {
+                        if (NameServ.Text != "" && NameServ.Text.Equals(items.ServName.ToString()))
+                        {
+                            GetVisibilityListBox(NamServSpic, Visibility.Hidden, NameServ, new Thickness(1, 1, 1, 1));
+                        }
                     }
                 }
             }
