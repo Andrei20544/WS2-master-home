@@ -73,7 +73,8 @@ namespace WSHospital
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            
+            AddStuf addStuf = new AddStuf();
+            addStuf.Show();
         }
     }
 }

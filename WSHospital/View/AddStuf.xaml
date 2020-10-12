@@ -51,7 +51,7 @@
 
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Width="120">Role</Label>
-                <TextBox Width="250" Name="Role"></TextBox>
+                <ComboBox Name="Rolee" Width="250"></ComboBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="5">
@@ -61,7 +61,7 @@
 
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Width="120">Gender</Label>
-                <ComboBox Name="Gend" Width="250"></ComboBox>
+                <ComboBox Name="GendR" Width="250"></ComboBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="5">

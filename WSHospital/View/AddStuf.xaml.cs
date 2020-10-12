@@ -22,6 +22,31 @@ namespace WSHospital.View
         public AddStuf()
         {
             InitializeComponent();
+
+            using (ModelBD md = new ModelBD())
+            {
+                var Gend = from g in md.Users
+                           select new
+                           {
+                               gender = g.Gender
+                           };
+
+                var Rol = from r in md.Rolee
+                           select new
+                           {
+                               role = r.RoleName
+                           };
+
+                foreach (var item in Gend)
+                {
+                    GendR.Items.Add(item.gender);
+                }
+
+                foreach (var item in Rol)
+                {
+                    Rolee.Items.Add(item.role);
+                }
+            }
         }
     }
 }
