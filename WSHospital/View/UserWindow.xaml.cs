@@ -106,16 +106,19 @@ namespace WSHospital
                 var patName = md.Patients.ToList();
 
                 ArrayList list = new ArrayList();
-                
+
+                string nam = "";
                 foreach(var item in patName)
                 {
                     foreach(var item1 in fioPatserv)
                     {
                         if (item1.NamePat == item.FIO)
                         {
-                            list.Add(item.FIO + " - " + item1.NameServ);
+                            nam += item1.NameServ + ", ";
                         }                      
                     }
+                    list.Add(item.FIO + " - " + nam);
+                    nam = "";
                 }
 
                 StrahSch strah = new StrahSch(list);
