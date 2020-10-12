@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -91,8 +92,27 @@ namespace WSHospital
 
         private void CreateSch_Click(object sender, RoutedEventArgs e)
         {
-            StrahSch strah = new StrahSch();
-            strah.Show();
+            using(ModelBD md = new ModelBD())
+            {
+                var fioPatserv = from p in md.Patients
+                                 join n in md.NumberAnalyze on p.ID equals n.IDPatient
+                                 join s in md.SetServicee on n.IDService equals s.ID
+                                 select new
+                                 {
+                                     NamePat = p.FIO,
+                                     NameServ = s.Name
+                                 };
+
+                ArrayList list = new ArrayList();
+                
+                foreach(var item in fioPatserv)
+                {
+                    list.Add(item.NamePat + " - " + item.NameServ);
+                }
+
+                StrahSch strah = new StrahSch(list);
+                strah.Show();
+            }
         }
     }
 }

@@ -47,14 +47,14 @@
                     <Button Style="{StaticResource BordKey}" Name="bord" Click="bord_Click"></Button>
                 </Border>
 
-                <Grid x:Name="CombBoxCust" Visibility="Hidden">
+                <Grid x:Name="CombBoxCust" Visibility="Hidden" Margin="17 0 10 0" Panel.ZIndex="3">
                     <Polygon Points="30,0,
                          45,10,
                          256,10,
                          256,140,
                          8,140,
                          8,10,
-                         15,10" Height="150" Fill="#FF6A6A6A" StrokeThickness="2" Stroke="#FF6A6A6A">
+                         15,10" Height="150" Fill="#FF6A6A6A" StrokeThickness="2" Stroke="#FF6A6A6A" Panel.ZIndex="2">
                     </Polygon>
 
                     <Polygon Points="30,0,
@@ -63,7 +63,7 @@
                          256,140,
                          8,140,
                          8,10,
-                         15,10" Height="150">
+                         15,10" Height="150"  Panel.ZIndex="2">
                         <Polygon.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FFCBCBCB" Offset="0"/>
@@ -72,42 +72,46 @@
                         </Polygon.Fill>
                     </Polygon>
 
-                    <ListBox Width="250" Height="125" Background="Transparent" Name="ListComp" BorderThickness="0" SelectionChanged="ListComp_SelectionChanged"></ListBox>
+                    <ListBox Width="245" Height="125" Margin="0 0 6 0" Background="Transparent" Name="ListComp" BorderThickness="0" SelectionChanged="ListComp_SelectionChanged"  Panel.ZIndex="5"></ListBox>
+                    
+                    
 
                 </Grid>
+
+                <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0 -130 0 0" Panel.ZIndex="1">
+
+                    <StackPanel Orientation="Horizontal"  Panel.ZIndex="1">
+                        <Label  Panel.ZIndex="1">Период для оплаты</Label>
+                        <TextBox Width="155" Height="28"  Panel.ZIndex="1"></TextBox>
+                    </StackPanel>
+
+                </StackPanel>
 
             </StackPanel>
 
         </Grid>
 
-        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0 5 0 0">
-
-            <StackPanel Orientation="Horizontal">
-                <Label>Период для оплаты</Label>
-                <TextBox Width="150" Height="28"></TextBox>
-            </StackPanel>
-
-        </StackPanel>
+       
 
         <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3">
             <ScrollViewer>
                 <StackPanel Background="#FFE8E2DA">
                     <StackPanel Orientation="Horizontal">
                         <Label Width="250" Height="28">Компания :</Label>
-                        <TextBlock Width="220" Height="28" Name="CompName"></TextBlock>
+                        <TextBlock Height="28" Name="CompName" SizeChanged="CompName_SizeChanged" VerticalAlignment="Center" TextAlignment="Center" FontSize="17"></TextBlock>
                     </StackPanel>
                     <StackPanel Margin="0 5 0 0">
                         <Label Width="250" Height="28" HorizontalAlignment="Left">ФИО пациентов с оказанными услугами:</Label>
-                        <ListBox x:Name="ListPat"></ListBox>
+                        <ListView x:Name="ListPat" SelectionMode="Single"></ListView>
                     </StackPanel>
                     <StackPanel Margin="0 5 0 0">
                         <Label Width="250" Height="28" HorizontalAlignment="Left">Стоимость услуг по каждому пациенту:</Label>
-                        <ListBox x:Name="ListPatSum"></ListBox>
+                        <ListView x:Name="ListPatSum"></ListView>
                     </StackPanel>
 
                     <StackPanel Margin="0 5 0 0" Orientation="Horizontal">
                         <Label Width="250" Height="28" HorizontalAlignment="Left">Итоговая стоимость:</Label>
-                        <TextBlock x:Name="It" Width="220" Height="28"></TextBlock>
+                        <TextBlock x:Name="It" Height="28"></TextBlock>
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
