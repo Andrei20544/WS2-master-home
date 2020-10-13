@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -23,7 +24,13 @@ namespace WSHospital.View
         public CheckBox check;
         public ReceptionBioMaterialWindow(Users u, int age, BitmapImage ph)
         {
-            InitializeComponent();               
+            InitializeComponent();
+
+            DoubleAnimation buttonAnimation = new DoubleAnimation();
+            buttonAnimation.From = ex.ActualWidth;
+            buttonAnimation.To = 25;
+            buttonAnimation.Duration = TimeSpan.FromMilliseconds(200);
+            ex.BeginAnimation(Button.WidthProperty, buttonAnimation);
         }
 
         public ReceptionBioMaterialWindow() {}
@@ -57,6 +64,7 @@ namespace WSHospital.View
             return StrShk;
         }
 
+        //Code
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             string barcode = BarCodeGenerate();
@@ -95,6 +103,7 @@ namespace WSHospital.View
             canv.Children.Add(stackPanel);     
 
         }
+        //
 
         public Orderr orderr;
         public NumberAnalyze numAn;

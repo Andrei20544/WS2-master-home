@@ -15,10 +15,6 @@ using System.Windows.Shapes;
 
 namespace WSHospital.View
 {
-    /// <summary>
-    /// Логика взаимодействия для Analyzer.xaml
-    /// </summary>
-    /// 
     public class Services
     {
         public string name { get; set; }
@@ -33,13 +29,15 @@ namespace WSHospital.View
             InitializeComponent();
 
             Services services = new Services();
+            List<Services> list = new List<Services>();
 
-            grid.DataContext = services;
+            grid.DataContext = list;
 
             using (ModelBD md = new ModelBD())
             {
                 var serv = from s in md.LabServices
                            join o in md.Orderr on s.ID equals o.IDService
+                           where o.Status == "OK"
                            select new
                            {
                                NameServ = s.Name,
@@ -54,11 +52,9 @@ namespace WSHospital.View
                         name = item.NameServ,
                         status = item.Stat,
                         cost = item.cost
-
                     };
+                    list.Add(services);
                 }
-
-                
             }
         }
     }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WSHospital.View"
         mc:Ignorable="d"
         Title="ReceptionBioMaterialWindow" Height="620" Width="1100" 
-        MaxHeight="720" MaxWidth="1280" MinHeight="620" MinWidth="1100" Background="{x:Null}" WindowStyle="None" >
+        MaxHeight="720" MaxWidth="1280" MinHeight="620" MinWidth="1100" Background="{x:Null}" WindowStyle="None" ResizeMode="NoResize" >
     <Window.Resources>
 
         <Style x:Key="BordStyle">
@@ -14,6 +14,10 @@
             <Setter Property="ItemsControl.BorderBrush" Value="#FF77AFD6"></Setter>
             <Setter Property="ItemsControl.Width" Value="275"></Setter>
             <Setter Property="ItemsControl.Margin" Value="5"></Setter>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="White"></Setter>
         </Style>
 
         <Style TargetType="Label">
@@ -25,22 +29,14 @@
         </Style>
 
         <Style x:Key="BordKey" TargetType="Button">
-            <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
-            
+
             <Setter Property="Width" Value="250"/>
             <Setter Property="Height" Value="35"/>
             <Setter Property="FontSize" Value="17"/>
             <Setter Property="Foreground" Value="#FFB1DCF9"/>
             <Setter Property="Background" Value="#FF0E6C9E"/>
             <Setter Property="BorderThickness" Value="0"/>
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}"></Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="BorderBrush" Value="#FF022D3C"/>
 
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -71,8 +67,8 @@
 
         <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="3">
         
-        <Grid Width="1087" Height="25" Background="#FF022D3C" MouseDown="Grid_MouseDown">
-                <Button Width="25" Height="25" HorizontalAlignment="Right" Background="#FF9E4D4D" VerticalAlignment="Top" Click="Button_Click_5"></Button>
+        <Grid Width="1100" Height="25" Background="#FF022D3C" MouseDown="Grid_MouseDown">
+                <Button Width="25" Height="25" HorizontalAlignment="Right" Background="#FF9E4D4D" VerticalAlignment="Top" Click="Button_Click_5" Name="ex"></Button>
         </Grid>
 
         <Border BorderBrush="#FF8C9AA6" BorderThickness="0" CornerRadius="15" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalAlignment="Center">
@@ -102,9 +98,9 @@
                             <Canvas Background="#FF346A7E" Height="180" Name="canv" Width="550"></Canvas>
                         </Border>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0" Panel.ZIndex="2">
-                            <Button Style="{StaticResource BordKey}" Margin="0 0 10 0" Click="Button_Click_4">Печать</Button>
-                            <Button Style="{StaticResource BordKey}" Margin="10 0 0 0" Click="Button_Click_3">Сформировать заказ</Button>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0" Panel.ZIndex="2">
+                                <Button Style="{StaticResource BordKey}" Margin="0 0 0 0" Click="Button_Click_4" Name="vv" Panel.ZIndex="1">Печать</Button>
+                                <Button Style="{StaticResource BordKey}" Margin="10 0 0 0" Click="Button_Click_3">Сформировать заказ</Button>
                         </StackPanel>
 
                     </StackPanel>
@@ -140,11 +136,11 @@
 
                         <StackPanel Margin="0 -100 0 0">
                             <Label HorizontalAlignment="Center">Подуслуги</Label>
-                            <ListBox Width="365" Height="210" Background="#FF346A7E" Name="DopServ" SelectionMode="Multiple" SelectionChanged="DopServ_SelectionChanged"/>
+                            <ListBox Width="365" Height="210" Background="#FF346A7E" Name="DopServ" SelectionMode="Multiple" SelectionChanged="DopServ_SelectionChanged" Foreground="White"/>
                         </StackPanel>
 
                         <StackPanel Height="30" Margin="0 50 0 0" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Width="280" Height="30"  Click="Button_Click_1" BorderThickness="0" Background="#FF0E6C9E"  Foreground="#FFB1DCF9">Добавить пациента</Button>
+                            <Button Style="{StaticResource BordKey}" Width="280" Height="30"  Click="Button_Click_1">Добавить пациента</Button>
                         </StackPanel>
 
                     </StackPanel>

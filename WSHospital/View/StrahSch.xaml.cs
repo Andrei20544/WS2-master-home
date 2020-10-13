@@ -22,7 +22,6 @@ namespace WSHospital.View
     public partial class StrahSch : Window
     {
         private ArrayList list1 = new ArrayList();
-
         public StrahSch(ArrayList list)
         {
             InitializeComponent();
@@ -45,19 +44,6 @@ namespace WSHospital.View
                                NamePat = p.FIO,
                                Cost = ls.Cost
                            };
-
-
-                //var step = from b in md.BioMaterial
-                //           join ss in md.SetServicee on b.IDSetService equals ss.ID
-                //           join ls in md.LabServices on b.BioName equals ls.Name
-                //           select new
-                //           {
-                //               BioCode = b.BioCode,
-                //               NameServ = ls.Name,
-                //               CostServ = ls.Cost
-                //           };
-
-               
 
                 var PatNam = md.Patients.ToList();
 

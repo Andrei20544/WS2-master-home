@@ -15,11 +15,12 @@
             <RowDefinition Height="100*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <DataGrid AutoGenerateColumns="False" Name="grid" DataContext="{Binding services}">
+        <DataGrid AutoGenerateColumns="False" Name="grid" DataContext="{Binding list}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название сервиса" Binding="{Binding Path=name}" Width="200" />
                 <DataGridHyperlinkColumn Header="Статус" Binding="{Binding Path=status}" Width="120" />
-                <DataGridTextColumn Header="отправка" Binding="{Binding Path=Price}" Width="150" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=cost}" Width="150" />
+                <DataGridTextColumn Header="отправка" Width="150" />
             </DataGrid.Columns>
         </DataGrid>
 
