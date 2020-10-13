@@ -99,16 +99,17 @@
                 <StackPanel x:Name="otch">
 
                     <StackPanel Background="#FFE8E2DA">
+                        <Label Height="35" FontSize="20" HorizontalContentAlignment="Center">Счет</Label>
                         <StackPanel Orientation="Horizontal">
                             <Label FontSize="18" Width="250" Height="35">Компания :</Label>
                             <Label Height="35" Name="CompName" VerticalContentAlignment="Center" FontSize="17" FontWeight="Bold" SizeChanged="CompName_SizeChanged_1"></Label>
                         </StackPanel>
                         <StackPanel Margin="0 5 0 0">
-                            <Label FontSize="18" Width="250" Height="35" HorizontalAlignment="Left">ФИО пациентов с оказанными услугами:</Label>
+                            <Label FontSize="18" Width="370" Height="35" HorizontalAlignment="Left">ФИО пациентов с оказанными услугами:</Label>
                             <ListView x:Name="ListPat" SelectionMode="Single"></ListView>
                         </StackPanel>
                         <StackPanel Margin="0 5 0 0">
-                            <Label FontSize="18" Width="250" Height="35" HorizontalAlignment="Left">Стоимость услуг по каждому пациенту:</Label>
+                            <Label FontSize="18" Width="360" Height="35" HorizontalAlignment="Left">Стоимость услуг по каждому пациенту:</Label>
                             <ListView x:Name="ListPatSum"></ListView>
                         </StackPanel>
 

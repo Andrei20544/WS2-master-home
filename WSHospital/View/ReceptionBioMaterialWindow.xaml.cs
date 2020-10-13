@@ -378,7 +378,7 @@ namespace WSHospital.View
         }
         //
 
-        //
+        //Service
         private void NameServ_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
@@ -478,8 +478,6 @@ namespace WSHospital.View
                         }
                     }
                 }
-
-                summ.Text = sum.ToString();
             }
         }
         //

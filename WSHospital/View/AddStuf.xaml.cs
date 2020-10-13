@@ -48,5 +48,49 @@ namespace WSHospital.View
                 }
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (ModelBD md = new ModelBD())
+                {
+                    var rol = md.Rolee.Where(p => p.RoleName.Equals(Rolee.SelectedItem)).FirstOrDefault();
+
+                    Users users = new Users
+                    {
+                        FirstName = FirstNam.Text,
+                        LastName = LastNam.Text,
+                        Login = Log.Text,
+                        Password = Pass.Password,
+                        Services = double.Parse(Serv.Text),
+                        RoleID = rol.RoleID,
+                        Photo = "",
+                        Gender = GendR.SelectedItem.ToString(),
+                        DateOfBirth = DatOf.SelectedDate
+                    };
+
+                    md.Users.Add(users);
+                    md.SaveChanges();
+
+                    MessageBox.Show("!!");
+
+                    MainWindow main = new MainWindow();
+                    main.LOG.Text = Log.Text;
+                    main.PASS.Password = Pass.Password;
+
+                    this.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

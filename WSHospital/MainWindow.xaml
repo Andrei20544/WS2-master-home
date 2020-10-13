@@ -39,11 +39,11 @@
             
             <Label>Login</Label>
             <Border BorderBrush="#FF97A7B6" BorderThickness="5" CornerRadius="20">
-                <TextBox Background="Transparent" Name="LOG" >a.black@milkwoodproductions.com</TextBox>
+                <TextBox Background="Transparent" Name="LOG" FontFamily="Segoe UI Historic" >a.black@milkwoodproductions.com</TextBox>
             </Border>
             <Label>Password</Label>
             <Border BorderBrush="#FF97A7B6" BorderThickness="5" CornerRadius="20">
-                <TextBox Background="Transparent" Name="PASS">X$9rJpYU</TextBox>
+                <PasswordBox Background="Transparent" Name="PASS" Password="X$9rJpYU" HorizontalContentAlignment="Center" Height="30" VerticalContentAlignment="Center" FontSize="17"></PasswordBox>
             </Border>
 
             <Border BorderBrush="#FF95A3B2" Margin="0 85 0 0" Height="40" CornerRadius="8" BorderThickness="1" Width="380" Background="#FF95A3B2">

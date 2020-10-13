@@ -31,7 +31,7 @@
 
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Width="120">Last Name</Label>
-                <TextBox Width="250" Name="LastName"></TextBox>
+                <TextBox Width="250" Name="LastNam"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="5">
@@ -41,7 +41,7 @@
 
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Width="120">Password</Label>
-                <TextBox Width="250" Name="Pass"></TextBox>
+                <PasswordBox Width="250" Name="Pass"></PasswordBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="5">
@@ -56,7 +56,7 @@
 
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Width="120">Photo</Label>
-                <Button Width="250">add photo</Button>
+                <Button Width="250" Click="Button_Click_1">add photo</Button>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="5">
@@ -66,12 +66,12 @@
 
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Width="120">Date of Birth</Label>
-                <TextBox Width="250" Name="DatOf"></TextBox>
+                <DatePicker Width="250" Name="DatOf"></DatePicker>
             </StackPanel>
 
             <Rectangle Height="5" Fill="#FFBFBFBF"></Rectangle>
 
-            <Button Width="350" Height="27" Margin="0 10 0 0">Add</Button>
+            <Button Width="350" Height="27" Margin="0 10 0 0" Click="Button_Click">Add</Button>
 
         </StackPanel>
 

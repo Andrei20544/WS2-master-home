@@ -28,15 +28,15 @@ namespace WSHospital
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-                if (LOG.Text.Length == 0 && PASS.Text.Length == 0)
+                if (LOG.Text.Length == 0 && PASS.Password.Length == 0)
                 {
                     MessageBox.Show("Введите логин и пароль");
                 }
-                else if (LOG.Text.Length == 0 && PASS.Text.Length != 0)
+                else if (LOG.Text.Length == 0 && PASS.Password.Length != 0)
                 {
                     MessageBox.Show("Введите логин");
                 }
-                else if (LOG.Text.Length != 0 && PASS.Text.Length == 0)
+                else if (LOG.Text.Length != 0 && PASS.Password.Length == 0)
                 {
                     MessageBox.Show("Введите пароль");
                 }
@@ -45,7 +45,7 @@ namespace WSHospital
                     using (ModelBD md = new ModelBD())
                     {
                         var login = md.Users.FirstOrDefault(p => p.Login.Equals(LOG.Text));
-                        var password = md.Users.FirstOrDefault(p => p.Password.Equals(PASS.Text));
+                        var password = md.Users.FirstOrDefault(p => p.Password.Equals(PASS.Password));
 
                         if (login == null && password == null)
                         {
@@ -61,7 +61,7 @@ namespace WSHospital
                         }
                         else
                         {
-                            Users user = md.Users.Where(p => p.Login.Equals(LOG.Text) && p.Password.Equals(PASS.Text)).FirstOrDefault();
+                            Users user = md.Users.Where(p => p.Login.Equals(LOG.Text) && p.Password.Equals(PASS.Password)).FirstOrDefault();
                             UserWindow userWindow = new UserWindow(user);
                             userWindow.Show();
                         }

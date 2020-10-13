@@ -67,8 +67,6 @@
                             <Button Width="250" Height="35" HorizontalAlignment="Left" Margin="0 0 10 0" Click="Button_Click_4">Печать</Button>
                             <Button Width="250" Height="35" HorizontalAlignment="Left" Margin="10 0 0 0" FontSize="17" Click="Button_Click_3">Сформировать заказ</Button>
                         </StackPanel>
-                    
-                        <TextBlock Width="520" Height="25" Margin="0 10 0 0" Name="summ"></TextBlock>
 
                     </StackPanel>
 
