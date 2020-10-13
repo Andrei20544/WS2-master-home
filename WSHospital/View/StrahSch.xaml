@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WSHospital.View"
         mc:Ignorable="d"
-        Title="StrahSch" Height="450" Width="800">
+        Title="StrahSch" Height="720" Width="1280">
     <Window.Resources>
         <Style x:Key="BordKey" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
@@ -41,13 +41,13 @@
         <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
 
             <StackPanel>
-                <Label>Company</Label>
+                <Label FontSize="18">Company</Label>
 
-                <Border Width="250" Height="28" Background="Black" BorderThickness="1" BorderBrush="#333333">
+                <Border Width="255" Height="28" Background="Black" BorderThickness="1" BorderBrush="#333333" Margin="121 0 0 0">
                     <Button Style="{StaticResource BordKey}" Name="bord" Click="bord_Click"></Button>
                 </Border>
 
-                <Grid x:Name="CombBoxCust" Visibility="Hidden" Margin="17 0 10 0" Panel.ZIndex="3">
+                <Grid x:Name="CombBoxCust" Visibility="Hidden" Margin="168 0 10 0" Panel.ZIndex="3">
                     <Polygon Points="30,0,
                          45,10,
                          256,10,
@@ -72,7 +72,7 @@
                         </Polygon.Fill>
                     </Polygon>
 
-                    <ListBox Width="245" Height="125" Margin="0 0 6 0" Background="Transparent" Name="ListComp" BorderThickness="0" SelectionChanged="ListComp_SelectionChanged"  Panel.ZIndex="5"></ListBox>
+                    <ListBox Width="245" Height="125" Margin="0 0 35 0" Background="Transparent" Name="ListComp" BorderThickness="0" SelectionChanged="ListComp_SelectionChanged"  Panel.ZIndex="5"></ListBox>
                     
                     
 
@@ -81,8 +81,8 @@
                 <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0 -130 0 0" Panel.ZIndex="1">
 
                     <StackPanel Orientation="Horizontal"  Panel.ZIndex="1">
-                        <Label  Panel.ZIndex="1">Период для оплаты</Label>
-                        <TextBox Width="155" Height="28"  Panel.ZIndex="1"></TextBox>
+                        <Label FontSize="18" Panel.ZIndex="1">Период для оплаты</Label>
+                        <DatePicker Width="255" Height="28" Panel.ZIndex="1"></DatePicker>
                     </StackPanel>
 
                 </StackPanel>
@@ -95,27 +95,38 @@
 
         <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3">
             <ScrollViewer>
-                <StackPanel Background="#FFE8E2DA">
-                    <StackPanel Orientation="Horizontal">
-                        <Label Width="250" Height="28">Компания :</Label>
-                        <TextBlock Height="28" Name="CompName" SizeChanged="CompName_SizeChanged" VerticalAlignment="Center" TextAlignment="Center" FontSize="17"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Margin="0 5 0 0">
-                        <Label Width="250" Height="28" HorizontalAlignment="Left">ФИО пациентов с оказанными услугами:</Label>
-                        <ListView x:Name="ListPat" SelectionMode="Single"></ListView>
-                    </StackPanel>
-                    <StackPanel Margin="0 5 0 0">
-                        <Label Width="250" Height="28" HorizontalAlignment="Left">Стоимость услуг по каждому пациенту:</Label>
-                        <ListView x:Name="ListPatSum"></ListView>
+
+                <StackPanel x:Name="otch">
+
+                    <StackPanel Background="#FFE8E2DA">
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="18" Width="250" Height="35">Компания :</Label>
+                            <Label Height="35" Name="CompName" VerticalContentAlignment="Center" FontSize="17" FontWeight="Bold" SizeChanged="CompName_SizeChanged_1"></Label>
+                        </StackPanel>
+                        <StackPanel Margin="0 5 0 0">
+                            <Label FontSize="18" Width="250" Height="35" HorizontalAlignment="Left">ФИО пациентов с оказанными услугами:</Label>
+                            <ListView x:Name="ListPat" SelectionMode="Single"></ListView>
+                        </StackPanel>
+                        <StackPanel Margin="0 5 0 0">
+                            <Label FontSize="18" Width="250" Height="35" HorizontalAlignment="Left">Стоимость услуг по каждому пациенту:</Label>
+                            <ListView x:Name="ListPatSum"></ListView>
+                        </StackPanel>
+
+                        <StackPanel Margin="0 5 0 0" Orientation="Horizontal">
+                            <Label FontSize="18" Width="250" Height="35" HorizontalAlignment="Left">Итоговая стоимость:</Label>
+                            <Label VerticalContentAlignment="Center" Height="35" Name="It" FontWeight="Bold" FontSize="17"></Label>
+                        </StackPanel>
                     </StackPanel>
 
-                    <StackPanel Margin="0 5 0 0" Orientation="Horizontal">
-                        <Label Width="250" Height="28" HorizontalAlignment="Left">Итоговая стоимость:</Label>
-                        <TextBlock x:Name="It" Height="28"></TextBlock>
-                    </StackPanel>
                 </StackPanel>
+
             </ScrollViewer>
         </Grid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 10">
+            <Button Width="180" Height="25" Margin="0 0 5 0" Click="Button_Click_1">Печать</Button>
+            <Button Width="180" Height="25" Margin="5 0 0 0" Click="Button_Click">Сохранить в PDF</Button>
+        </StackPanel>
 
     </Grid>
 </Window>

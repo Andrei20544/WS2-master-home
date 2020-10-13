@@ -90,7 +90,7 @@ namespace WSHospital.View
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ссылка: " + link);
+            MessageBox.Show("Ссылка: " + link,"Link",MessageBoxButton.OKCancel);
         }
     }
 }

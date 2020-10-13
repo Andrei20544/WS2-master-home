@@ -44,15 +44,15 @@ namespace WSHospital.View
                            };
 
 
-                var step = from b in md.BioMaterial
-                           join ss in md.SetServicee on b.IDSetService equals ss.ID
-                           join ls in md.LabServices on b.BioName equals ls.Name
-                           select new
-                           {
-                               BioCode = b.BioCode,
-                               NameServ = ls.Name,
-                               CostServ = ls.Cost
-                           };
+                //var step = from b in md.BioMaterial
+                //           join ss in md.SetServicee on b.IDSetService equals ss.ID
+                //           join ls in md.LabServices on b.BioName equals ls.Name
+                //           select new
+                //           {
+                //               BioCode = b.BioCode,
+                //               NameServ = ls.Name,
+                //               CostServ = ls.Cost
+                //           };
 
                 var PatNam = md.Patients.ToList();
 
@@ -61,7 +61,7 @@ namespace WSHospital.View
                 {
                     foreach (var item1 in cost)
                     {
-                        if (item.FIO == item.FIO)
+                        if (item.FIO == item1.NamePat)
                         {
                             summ1 += item1.Cost;
                         }
@@ -88,7 +88,7 @@ namespace WSHospital.View
                 {
                     summ += item.Cost;
                 }
-                It.Text = summ.ToString();
+                It.Content = summ.ToString();
             }
         }
 
@@ -100,10 +100,22 @@ namespace WSHospital.View
 
         private void ListComp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CompName.Text = ListComp.SelectedItem.ToString();
+            CompName.Content = ListComp.SelectedItem.ToString();
         }
 
-        private void CompName_SizeChanged(object sender, SizeChangedEventArgs e)
+        private PrintDialog print = new PrintDialog();
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            print.PrintVisual(otch, "");
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            print.ShowDialog();
+        }
+
+        private void CompName_SizeChanged_1(object sender, SizeChangedEventArgs e)
         {
             CombBoxCust.Visibility = Visibility.Hidden;
         }
