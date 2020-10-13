@@ -61,7 +61,7 @@ namespace WSHospital
             else if (user.RoleID == 2)
             {
                 LookOtch.Visibility = Visibility.Collapsed;
-                CreateSch.Visibility = Visibility.Collapsed;
+                CreateSch.Visibility = Visibility.Visible;
             }
             else
             {
@@ -103,6 +103,16 @@ namespace WSHospital
                                      NameServ = s.Name
                                  };
 
+                var SetLabServ = from n in md.NumberAnalyze
+                                 join ss in md.LabServices on n.IDService equals ss.ID
+                                 join p in md.Patients on n.IDPatient equals p.ID
+                                 where ss.ID == n.IDService
+                                 select new
+                                 {
+                                     NamePat = p.FIO,
+                                     NameServ = ss.Name
+                                 };
+
                 var patName = md.Patients.ToList();
 
                 ArrayList list = new ArrayList();
@@ -110,7 +120,7 @@ namespace WSHospital
                 string nam = "";
                 foreach(var item in patName)
                 {
-                    foreach(var item1 in fioPatserv)
+                    foreach(var item1 in SetLabServ)
                     {
                         if (item1.NamePat == item.FIO)
                         {

@@ -27,7 +27,7 @@ namespace WSHospital.View
         private string link;
         private string services;
 
-        public Order(ListBox serv, double? cost, int idpat)
+        public Order(ListBox serv, double? cost, int idpat, long SHtr)
         {
             InitializeComponent();
 
@@ -56,7 +56,7 @@ namespace WSHospital.View
 
                         OrderDateOne.Text = DateTime.Now.ToString();
                         OrderNum.Text = item.IDOrd.ToString();
-                        NumProb.Text = item.IDBio.ToString();
+                        NumProb.Text = SHtr.ToString();
                         PoliceNum.Text = item.PolNum.ToString();
                         FIO.Text = item.FIO;
                         DateOfBirthP.Text = item.DateOF.ToString();

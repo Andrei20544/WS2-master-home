@@ -28,7 +28,7 @@ namespace WSHospital.View
 
             DoubleAnimation buttonAnimation = new DoubleAnimation();
             buttonAnimation.From = ex.ActualWidth;
-            buttonAnimation.To = 25;
+            buttonAnimation.To = 30;
             buttonAnimation.Duration = TimeSpan.FromMilliseconds(200);
             ex.BeginAnimation(Button.WidthProperty, buttonAnimation);
         }
@@ -140,7 +140,7 @@ namespace WSHospital.View
                     {
                         IDPatient = IdPat.ID,
                         IDService = ServNam.ID,
-                        Status = ""
+                        Status = "OK"
                     };
 
                     md.Orderr.Add(orderr);
@@ -177,7 +177,7 @@ namespace WSHospital.View
 
                     DateTime dat = DateTime.Now;
 
-                    Order order = new Order(DopServ, sum, IdPat.ID);
+                    Order order = new Order(DopServ, sum, IdPat.ID, long.Parse(Shtr.Text));
                     order.Show();
                 }
                 catch (Exception ex)
@@ -499,6 +499,7 @@ namespace WSHospital.View
         {
             this.Close();
         }
+
         //
 
 
