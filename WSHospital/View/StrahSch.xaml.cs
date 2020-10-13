@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace WSHospital.View
     /// </summary>
     public partial class StrahSch : Window
     {
+        private ArrayList list1 = new ArrayList();
+
         public StrahSch(ArrayList list)
         {
             InitializeComponent();
@@ -54,6 +57,8 @@ namespace WSHospital.View
                 //               CostServ = ls.Cost
                 //           };
 
+               
+
                 var PatNam = md.Patients.ToList();
 
                 double? summ1 = 0;
@@ -67,6 +72,7 @@ namespace WSHospital.View
                         }
                     }
                     ListPatSum.Items.Add(item.FIO + " - " + summ1);
+                    list1.Add(item.FIO + " - " + summ1);
                     summ1 = 0;
                 }
                 
@@ -112,7 +118,18 @@ namespace WSHospital.View
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            print.ShowDialog();
+            string pathCsvFile = $"C:\\Users\\{Environment.UserName}.KBK\\Documents";
+
+            using (var w = new StreamWriter(pathCsvFile))
+            {
+                for (int i = 0; i <= list1.Count; i++)
+                {
+                    var first = list1[i];
+                    var line = string.Format($"{first}");
+                    w.WriteLine(line);
+                    w.Flush();
+                }
+            }
         }
 
         private void CompName_SizeChanged_1(object sender, SizeChangedEventArgs e)

@@ -99,7 +99,7 @@
                 <StackPanel x:Name="otch">
 
                     <StackPanel Background="#FFE8E2DA">
-                        <Label Height="35" FontSize="20" HorizontalContentAlignment="Center">Счет</Label>
+                        <Label Height="35" FontSize="20" HorizontalContentAlignment="Center" FontWeight="Heavy">Счет</Label>
                         <StackPanel Orientation="Horizontal">
                             <Label FontSize="18" Width="250" Height="35">Компания :</Label>
                             <Label Height="35" Name="CompName" VerticalContentAlignment="Center" FontSize="17" FontWeight="Bold" SizeChanged="CompName_SizeChanged_1"></Label>
@@ -125,7 +125,7 @@
         </Grid>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 10">
-            <Button Width="180" Height="25" Margin="0 0 5 0" Click="Button_Click_1">Печать</Button>
+            <Button Width="180" Height="25" Margin="0 0 5 0" Click="Button_Click_1">Выгрузить в CSV</Button>
             <Button Width="180" Height="25" Margin="5 0 0 0" Click="Button_Click">Сохранить в PDF</Button>
         </StackPanel>
 

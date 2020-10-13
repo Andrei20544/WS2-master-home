@@ -43,7 +43,7 @@
             </Border>
             <Label>Password</Label>
             <Border BorderBrush="#FF97A7B6" BorderThickness="5" CornerRadius="20">
-                <PasswordBox Background="Transparent" Name="PASS" Password="X$9rJpYU" HorizontalContentAlignment="Center" Height="30" VerticalContentAlignment="Center" FontSize="17"></PasswordBox>
+                <PasswordBox BorderThickness="0" Background="Transparent" Name="PASS" Password="X$9rJpYU" HorizontalContentAlignment="Center" Height="30" VerticalContentAlignment="Center" FontSize="17"></PasswordBox>
             </Border>
 
             <Border BorderBrush="#FF95A3B2" Margin="0 85 0 0" Height="40" CornerRadius="8" BorderThickness="1" Width="380" Background="#FF95A3B2">
