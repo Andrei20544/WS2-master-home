@@ -6,16 +6,16 @@
         xmlns:local="clr-namespace:WSHospital.View"
         mc:Ignorable="d"
         Title="ReceptionBioMaterialWindow" Height="620" Width="1100" 
-        MaxHeight="720" MaxWidth="1280" MinHeight="620" MinWidth="1100" Background="White" >
+        MaxHeight="720" MaxWidth="1280" MinHeight="620" MinWidth="1100" Background="{x:Null}" WindowStyle="None" >
     <Window.Resources>
-        
+
         <Style x:Key="BordStyle">
             <Setter Property="ItemsControl.BorderThickness" Value="2"></Setter>
             <Setter Property="ItemsControl.BorderBrush" Value="#FF77AFD6"></Setter>
             <Setter Property="ItemsControl.Width" Value="275"></Setter>
             <Setter Property="ItemsControl.Margin" Value="5"></Setter>
         </Style>
-        
+
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="19"></Setter>
         </Style>
@@ -23,9 +23,42 @@
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="15"></Setter>
         </Style>
-        
+
+        <Style x:Key="BordKey" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
+            
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Foreground" Value="#FFB1DCF9"/>
+            <Setter Property="Background" Value="#FF0E6C9E"/>
+            <Setter Property="BorderThickness" Value="0"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}"></Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF127CB4" />
+                    <Setter Property="Foreground" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+
     </Window.Resources>
-    <Grid Background="White">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF346A7E" Offset="0"/>
+                <GradientStop Color="#FFC9E7F4" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="695*"></ColumnDefinition>
             <ColumnDefinition Width="677*"></ColumnDefinition>
@@ -36,7 +69,13 @@
             <RowDefinition Height="229*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Border BorderBrush="#FF8C9AA6" BorderThickness="5" CornerRadius="15" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalAlignment="Center">
+        <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="3">
+        
+        <Grid Width="1087" Height="25" Background="#FF022D3C" MouseDown="Grid_MouseDown">
+                <Button Width="25" Height="25" HorizontalAlignment="Right" Background="#FF9E4D4D" VerticalAlignment="Top" Click="Button_Click_5"></Button>
+        </Grid>
+
+        <Border BorderBrush="#FF8C9AA6" BorderThickness="0" CornerRadius="15" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalAlignment="Center">
 
             <StackPanel Orientation="Horizontal">
 
@@ -44,14 +83,14 @@
 
                     <Label>Введите штрих код</Label>
                     <StackPanel Orientation="Horizontal" KeyDown="StackPanel_KeyDown">
-                        <TextBox Width="400" Height="35" Name="Shtr" SelectionChanged="Shtr_SelectionChanged" VerticalContentAlignment="Center" FontSize="17" MaxLength="13"/>
+                        <TextBox Width="400" Height="35" Name="Shtr" SelectionChanged="Shtr_SelectionChanged" VerticalContentAlignment="Center" FontSize="17" MaxLength="13" Background="#FF7EA8BD" BorderThickness="0"/>
                         <Button Width="150" Margin="10 0 0 0" Click="Button_Click_2" Name="gen">Сгенерировать</Button>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0 20 0 0" Panel.ZIndex="5">
                         <Label Margin="0 0 10 0" Width="175">Код биоматериала</Label>
                         <StackPanel Panel.ZIndex="5">
-                            <TextBox Width="375" Height="35" Name="BioCodeA" TextChanged="BioCode_TextChanged" BorderThickness="1 1 1 1" VerticalContentAlignment="Center" FontSize="16" MaxLength="5"></TextBox>
+                            <TextBox Width="375" Height="35" Name="BioCodeA" TextChanged="BioCode_TextChanged" BorderThickness="1 1 1 1" VerticalContentAlignment="Center" FontSize="16" MaxLength="5" Background="#FF8ABAD3"></TextBox>
                             <!--<ListBox Width="375" Visibility="Visible" Background="Gainsboro" Height="90" Name="spic" Panel.ZIndex="1" MaxHeight="120" SelectionChanged="spic_SelectionChanged" BorderThickness="1 0 1 1"></ListBox>-->
                         </StackPanel>
                     </StackPanel>
@@ -59,13 +98,13 @@
                     <ListBox Width="560" Visibility="Hidden" Height="120" Background="#FFF3F3F3" Name="spic" Margin="0 0 40 0" Panel.ZIndex="5" MaxHeight="120" SelectionChanged="spic_SelectionChanged" BorderThickness="1 1 1 1"></ListBox>
 
                     <StackPanel Width="560" Height="335"  HorizontalAlignment="Left" Margin="0 -110 0 0" Panel.ZIndex="3">
-                        <Border BorderBrush="LightGray" BorderThickness="3" HorizontalAlignment="Center" Panel.ZIndex="0">
-                            <Canvas Background="#FFF3F3F3" Height="180" Name="canv" Width="550"></Canvas>
+                        <Border BorderBrush="LightGray" BorderThickness="0" HorizontalAlignment="Center" Panel.ZIndex="0">
+                            <Canvas Background="#FF346A7E" Height="180" Name="canv" Width="550"></Canvas>
                         </Border>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0" Panel.ZIndex="2">
-                            <Button Width="250" Height="35" HorizontalAlignment="Left" Margin="0 0 10 0" Click="Button_Click_4">Печать</Button>
-                            <Button Width="250" Height="35" HorizontalAlignment="Left" Margin="10 0 0 0" FontSize="17" Click="Button_Click_3">Сформировать заказ</Button>
+                            <Button Style="{StaticResource BordKey}" Margin="0 0 10 0" Click="Button_Click_4">Печать</Button>
+                            <Button Style="{StaticResource BordKey}" Margin="10 0 0 0" Click="Button_Click_3">Сформировать заказ</Button>
                         </StackPanel>
 
                     </StackPanel>
@@ -73,52 +112,50 @@
 
                 </StackPanel>
 
-                <Border BorderBrush="#FF8C9AA6" BorderThickness="5 0 0 0" CornerRadius="10" Grid.Column="0" Grid.RowSpan="3">
+                <Border BorderBrush="#FF8C9AA6" BorderThickness="0 0 0 0" CornerRadius="10" Grid.Column="0" Grid.RowSpan="3">
 
-                    <ScrollViewer>
+                    <StackPanel Width="450" Margin="15 0 0 0">
 
-                        <StackPanel Width="450" Margin="15 0 0 0">
+                        <Label FontSize="22" HorizontalAlignment="Center" FontWeight="DemiBold">Пациент</Label>
 
-                            <Label FontSize="22" HorizontalAlignment="Center" FontWeight="DemiBold">Пациент</Label>
+                        <Label HorizontalAlignment="Center">FIO</Label>
 
-                            <Label HorizontalAlignment="Center">FIO</Label>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBox Width="270" Height="35" Background="#FF7EA8BD" Name="FIO" FontSize="16" VerticalContentAlignment="Center" TextChanged="FIO_TextChanged"/>
+                            <!--<ComboBox Width="270" Height="35" Name="CombFIO" VerticalContentAlignment="Center"></ComboBox>-->
 
-                                <TextBox Width="270" Height="35" Background="#FFE4E4E4" Name="FIO" FontSize="16" VerticalContentAlignment="Center" TextChanged="FIO_TextChanged"/>
-                                <!--<ComboBox Width="270" Height="35" Name="CombFIO" VerticalContentAlignment="Center"></ComboBox>-->
-
-                                <Button Height="35" Width="90" Margin="5 0 0 0" Click="Button_Click" BorderThickness="0">Изменить</Button>
-
-                            </StackPanel>
-
-                            <ListBox Width="365" Visibility="Hidden" Height="120" Background="#FFF3F3F3" Name="FioSpic" Panel.ZIndex="5" MaxHeight="120" BorderThickness="1 1 1 1" SelectionChanged="FioSpic_SelectionChanged"></ListBox>
-
-                            <StackPanel Margin="0 -100 0 0">
-                                <Label HorizontalAlignment="Center">Услуги</Label>
-                                <TextBox Width="365" Height="35" Name="NameServ" FontSize="16" VerticalContentAlignment="Center" Background="#FFE4E4E4" TextChanged="NameServ_TextChanged"></TextBox>
-                            </StackPanel>
-
-                            <ListBox Width="365" Visibility="Hidden" Height="120" Margin="0 -30 0 0" Background="#FFF3F3F3" Name="NamServSpic" Panel.ZIndex="5" MaxHeight="120" BorderThickness="1 1 1 1" SelectionChanged="NamServSpic_SelectionChanged"/>
-
-                            <StackPanel Margin="0 -100 0 0">
-                                <Label HorizontalAlignment="Center">Подуслуги</Label>
-                                <ListBox Width="365" Height="210" Background="#FFF3F3F3" Name="DopServ" SelectionMode="Multiple" SelectionChanged="DopServ_SelectionChanged"/>
-                            </StackPanel>
-
-                            <StackPanel Height="30" Margin="0 50 0 0" Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Button Width="280" Height="30"  Click="Button_Click_1" BorderThickness="0">Добавить пациента</Button>
-                            </StackPanel>
+                            <Button Height="35" Width="90" Margin="5 0 0 0" Click="Button_Click" BorderThickness="0">Изменить</Button>
 
                         </StackPanel>
 
-                    </ScrollViewer>
+                        <ListBox Width="365" Visibility="Hidden" Height="120" Background="#FFF3F3F3" Name="FioSpic" Panel.ZIndex="5" MaxHeight="120" BorderThickness="1 1 1 1" SelectionChanged="FioSpic_SelectionChanged"></ListBox>
+
+                        <StackPanel Margin="0 -100 0 0">
+                            <Label HorizontalAlignment="Center">Услуги</Label>
+                            <TextBox Width="365" Height="35" Name="NameServ" FontSize="16" VerticalContentAlignment="Center" Background="#FF8ABAD3" TextChanged="NameServ_TextChanged"></TextBox>
+                        </StackPanel>
+
+                        <ListBox Width="365" Visibility="Hidden" Height="120" Margin="0 -30 0 0" Background="#FFF3F3F3" Name="NamServSpic" Panel.ZIndex="5" MaxHeight="120" BorderThickness="1 1 1 1" SelectionChanged="NamServSpic_SelectionChanged"/>
+
+                        <StackPanel Margin="0 -100 0 0">
+                            <Label HorizontalAlignment="Center">Подуслуги</Label>
+                            <ListBox Width="365" Height="210" Background="#FF346A7E" Name="DopServ" SelectionMode="Multiple" SelectionChanged="DopServ_SelectionChanged"/>
+                        </StackPanel>
+
+                        <StackPanel Height="30" Margin="0 50 0 0" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Width="280" Height="30"  Click="Button_Click_1" BorderThickness="0" Background="#FF0E6C9E"  Foreground="#FFB1DCF9">Добавить пациента</Button>
+                        </StackPanel>
+
+                    </StackPanel>
 
                 </Border>
 
             </StackPanel>
 
         </Border>
+
+        </StackPanel>
 
     </Grid>
 </Window>

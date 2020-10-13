@@ -93,6 +93,9 @@
     <Compile Include="View\AddStuf.xaml.cs">
       <DependentUpon>AddStuf.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Analyzer.xaml.cs">
+      <DependentUpon>Analyzer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Order.xaml.cs">
       <DependentUpon>Order.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddStuf.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Analyzer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

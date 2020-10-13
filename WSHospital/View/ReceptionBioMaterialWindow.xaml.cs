@@ -480,6 +480,16 @@ namespace WSHospital.View
                 }
             }
         }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
         //
 
 
