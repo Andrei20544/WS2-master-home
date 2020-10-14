@@ -17,6 +17,7 @@ namespace WSHospital.View
 {
     public class Services
     {
+        public int id { get; set; }
         public string name { get; set; }
         public string status { get; set; }
         public double? cost { get; set; }
@@ -29,9 +30,9 @@ namespace WSHospital.View
             InitializeComponent();
 
             Services services = new Services();
-            List<Services> list = new List<Services>();
+            //List<Services> list = new List<Services>();
 
-            grid.DataContext = list;
+            grid.DataContext = services;
 
             using (ModelBD md = new ModelBD())
             {
@@ -40,22 +41,35 @@ namespace WSHospital.View
                            where o.Status == "OK"
                            select new
                            {
+                               ID = o.ID,
                                NameServ = s.Name,
                                Stat = o.Status,
                                cost = s.Cost
-                           };          
+                           };
 
                 foreach (var item in serv)
                 {
                     services = new Services
                     {
+                        id = item.ID,
                         name = item.NameServ,
                         status = item.Stat,
-                        cost = item.cost
+                        cost = item.cost,
                     };
-                    list.Add(services);
+                    //list.Add(services);
+                    grid.Items.Add(services);
                 }
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

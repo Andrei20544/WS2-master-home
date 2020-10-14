@@ -5,24 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WSHospital.View"
         mc:Ignorable="d"
-        Title="Analyzer" Height="450" Width="800">
+        Title="Analyzer" Height="400" Width="800" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="319*"></RowDefinition>
-            <RowDefinition Height="100*"></RowDefinition>
+            <RowDefinition Height="331*"></RowDefinition>
+            <RowDefinition Height="40*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <DataGrid AutoGenerateColumns="False" Name="grid" DataContext="{Binding list}">
+        <DataGrid AutoGenerateColumns="False" Name="grid" DataContext="{Binding list}" Margin="7,0">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=id}" Width="35" />
                 <DataGridTextColumn Header="Название сервиса" Binding="{Binding Path=name}" Width="200" />
                 <DataGridHyperlinkColumn Header="Статус" Binding="{Binding Path=status}" Width="120" />
                 <DataGridTextColumn Header="Цена" Binding="{Binding Path=cost}" Width="150" />
-                <DataGridTextColumn Header="отправка" Width="150" />
+                <DataGridTemplateColumn Header="Отправка" Width="255">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Button_Click">Отправить</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" Margin="0 0 7 0" VerticalAlignment="Center">
+            <Button Width="150" Height="25" Click="Button_Click_1">ok</Button>
+        </StackPanel>
 
     </Grid>
 </Window>
