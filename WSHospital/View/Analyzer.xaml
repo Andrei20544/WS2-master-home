@@ -21,7 +21,7 @@
                 <DataGridTextColumn Header="Название сервиса" Binding="{Binding Path=name}" Width="200" />
                 <DataGridHyperlinkColumn Header="Статус" Binding="{Binding Path=status}" Width="120" />
                 <DataGridTextColumn Header="Цена" Binding="{Binding Path=cost}" Width="150" />
-                <DataGridTemplateColumn Header="Отправка" Width="255">
+                <DataGridTemplateColumn Header="Отправка на анализатор" Width="255">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Click="Button_Click">Отправить</Button>

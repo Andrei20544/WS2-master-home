@@ -30,7 +30,6 @@ namespace WSHospital.View
             InitializeComponent();
 
             Services services = new Services();
-            //List<Services> list = new List<Services>();
 
             grid.DataContext = services;
 
@@ -56,7 +55,6 @@ namespace WSHospital.View
                         status = item.Stat,
                         cost = item.cost,
                     };
-                    //list.Add(services);
                     grid.Items.Add(services);
                 }
             }
@@ -64,7 +62,12 @@ namespace WSHospital.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //Структура запроса: JSON {“patient”: “{id}”, “services”: [{“serviceCode”:000}, {“serviceCode”:000}… ]}
+            var items = grid.CurrentCell;
+
+            JsonRequests requests = new JsonRequests();
             
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -72,4 +75,12 @@ namespace WSHospital.View
             this.Close();
         }
     }
+
+    public class JsonRequests
+    {
+        public int PatID { get; set; }
+        public string ServNam { get; set; }
+        public long ServCode { get; set; }
+    }
+
 }

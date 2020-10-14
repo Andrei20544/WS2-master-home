@@ -68,6 +68,7 @@ namespace WSHospital.View
                                Serv = ls.Name,
                                Cost = ls.Cost
                            };
+
                 var PatNam = md.Patients.ToList();
 
                 string serv = "";

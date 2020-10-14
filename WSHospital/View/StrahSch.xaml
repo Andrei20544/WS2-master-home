@@ -96,9 +96,9 @@
         <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3">
             <ScrollViewer>
 
-                <StackPanel x:Name="otch">
+                <StackPanel>
 
-                    <StackPanel Background="#FFE8E2DA">
+                    <StackPanel Background="#FFE8E2DA" Name="otch">
                         <Label Height="35" FontSize="20" HorizontalContentAlignment="Center" FontWeight="Heavy">Счет</Label>
                         <StackPanel Orientation="Horizontal">
                             <Label FontSize="18" Width="250" Height="35">Компания :</Label>

@@ -9,6 +9,31 @@
         MaxHeight="720" MaxWidth="1280" MinHeight="620" MinWidth="1100" Background="{x:Null}" WindowStyle="None" ResizeMode="NoResize" >
     <Window.Resources>
 
+        <Style TargetType="Button" x:Key="ExitButton">
+            
+            <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
+            <Setter Property="Width" Value="26"></Setter>
+            <Setter Property="Height" Value="26"></Setter>
+            <Setter Property="Background" Value="#FF9E4D4D"></Setter>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="1" BorderBrush="#FF6A8FB0" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF813939" />
+                    <Setter Property="BorderThickness" Value="2 2 1 1"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style x:Key="BordStyle">
             <Setter Property="ItemsControl.BorderThickness" Value="2"></Setter>
             <Setter Property="ItemsControl.BorderBrush" Value="#FF77AFD6"></Setter>
@@ -22,6 +47,7 @@
 
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="19"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
         </Style>
 
         <Style TargetType="Button">
@@ -38,10 +64,26 @@
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="BorderBrush" Value="#FF022D3C"/>
 
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bordd" BorderBrush="Black" BorderThickness="0" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#FF127CB4" />
                     <Setter Property="Foreground" Value="White" />
+                </Trigger>
+
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#FF127CB4" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Margin" Value="1 1 0 0"></Setter>
                 </Trigger>
             </Style.Triggers>
 
@@ -68,8 +110,8 @@
         <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="3">
 
             <Grid Width="1100" Height="30" Background="#FF022D3C" MouseDown="Grid_MouseDown">
-                <Button Width="30" Height="30" HorizontalAlignment="Right" Background="#FF9E4D4D" VerticalAlignment="Top" Click="Button_Click_5" Name="ex" Panel.ZIndex="1"></Button>
-                <Label FontSize="15" HorizontalAlignment="Left" Width="1100">Bio</Label>
+                <Button Style="{StaticResource ExitButton}" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button_Click_5" Name="ex" Margin="0 0 2 0"></Button>
+                <Label FontSize="15" HorizontalAlignment="Left" Width="1050">Прием биоматериала</Label>
             </Grid>
 
             <Border BorderBrush="#FF8C9AA6" BorderThickness="0" CornerRadius="15" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalAlignment="Center">
@@ -102,8 +144,12 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 70 80 0" Panel.ZIndex="2">
-                            <Button Style="{StaticResource BordKey}" Margin="0 0 10 0" Click="Button_Click_4" Name="vv" Panel.ZIndex="1">Печать</Button>
+
+                            <Border Margin="0 0 10 0" BorderBrush="Black" Name="bord">
+                                <Button Style="{StaticResource BordKey}" Click="Button_Click_4" Name="vv" Panel.ZIndex="1">Печать</Button>
+                            </Border>
                             <Button Style="{StaticResource BordKey}" Margin="10 0 0 0" Click="Button_Click_3">Сформировать заказ</Button>
+                            
                         </StackPanel>
 
 
@@ -124,7 +170,7 @@
                                 </Label.Background> Пациент
                             </Label>
 
-                            <Label HorizontalAlignment="Center" Margin="0 0 325 0">FIO</Label>
+                            <Label HorizontalAlignment="Center" Margin="0 0 325 0">ФИО</Label>
 
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 

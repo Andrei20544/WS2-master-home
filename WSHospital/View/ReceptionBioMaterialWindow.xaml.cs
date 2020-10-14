@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace WSHospital.View
 {
-    /// <summary>
-    /// Логика взаимодействия для ReceptionBioMaterialWindow.xaml
-    /// </summary>
     public partial class ReceptionBioMaterialWindow : Window
     {
 
@@ -28,7 +25,7 @@ namespace WSHospital.View
 
             DoubleAnimation buttonAnimation = new DoubleAnimation();
             buttonAnimation.From = ex.ActualWidth;
-            buttonAnimation.To = 30;
+            buttonAnimation.To = 26;
             buttonAnimation.Duration = TimeSpan.FromMilliseconds(200);
             ex.BeginAnimation(Button.WidthProperty, buttonAnimation);
         }
