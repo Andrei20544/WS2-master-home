@@ -34,53 +34,10 @@ namespace WSHospital.View
                                compName = c.Name
                            };
 
-                var cost = from n in md.NumberAnalyze
-                           join b in md.BioMaterial on n.IDService equals b.IDSetService
-                           join ss in md.SetServicee on n.IDService equals ss.ID
-                           join ls in md.LabServices on b.BioName equals ls.Name
-                           join p in md.Patients on n.IDPatient equals p.ID
-                           select new
-                           {
-                               NamePat = p.FIO,
-                               Cost = ls.Cost
-                           };
-
-                var PatNam = md.Patients.ToList();
-
-                double? summ1 = 0;
-                foreach(var item in PatNam)
-                {
-                    foreach (var item1 in cost)
-                    {
-                        if (item.FIO == item1.NamePat)
-                        {
-                            summ1 += item1.Cost;
-                        }
-                    }
-                    ListPatSum.Items.Add(item.FIO + " - " + summ1);
-                    list1.Add(item.FIO + " - " + summ1);
-                    summ1 = 0;
-                }
-                
-
-
-
                 foreach (var item in comp)
                 {
                     ListComp.Items.Add(item.compName);
                 }
-
-                foreach (var item in list)
-                {
-                    ListPat.Items.Add(item.ToString());
-                }
-
-                double? summ = 0;
-                foreach(var item in cost)
-                {
-                    summ += item.Cost;
-                }
-                It.Content = summ.ToString();
             }
         }
 
@@ -93,6 +50,70 @@ namespace WSHospital.View
         private void ListComp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CompName.Content = ListComp.SelectedItem.ToString();
+
+            ListPat.Items.Clear();
+            ListPatSum.Items.Clear();
+            It.Content = null;
+
+            using(ModelBD md = new ModelBD())
+            {
+                var otch = from o in md.Orderr
+                           join p in md.Patients on o.IDPatient equals p.ID
+                           join ls in md.LabServices on o.IDService equals ls.ID
+                           join c in md.Company on p.IDCompany equals c.ID
+                           where c.ID == p.IDCompany
+                           select new
+                           {
+                               NamePat = p.FIO,
+                               Serv = ls.Name,
+                               Cost = ls.Cost
+                           };
+                var PatNam = md.Patients.ToList();
+
+                string serv = "";
+                foreach (var item in PatNam)
+                {
+                    foreach(var item1 in otch)
+                    {
+                        if (item.FIO == item1.NamePat)
+                        {
+                            serv += item1.Serv + ", ";
+                        }                       
+                    }
+                    var comp = md.Company.Where(p => p.Name.Equals(CompName.Content.ToString())).FirstOrDefault();
+                    if (item.IDCompany == comp.ID)
+                    {
+                        ListPat.Items.Add(item.FIO + " - " + serv);
+                    }                 
+                    serv = "";
+                }
+
+
+                double? summ1 = 0;
+                double? itog = 0;
+                foreach (var item in PatNam)
+                {
+                    foreach (var item1 in otch)
+                    {
+                        if (item.FIO == item1.NamePat)
+                        {
+                            summ1 += item1.Cost;
+                        }
+                    }
+                    var comp = md.Company.Where(p => p.Name.Equals(CompName.Content.ToString())).FirstOrDefault();
+
+                    if(item.IDCompany == comp.ID)
+                    {
+                        ListPatSum.Items.Add(item.FIO + " - " + summ1);
+                        list1.Add(item.FIO + " - " + summ1);
+                        itog += summ1;
+                    }                 
+                    summ1 = 0;
+                }
+
+                It.Content = itog;
+
+            }         
         }
 
         private PrintDialog print = new PrintDialog();
@@ -121,6 +142,11 @@ namespace WSHospital.View
         private void CompName_SizeChanged_1(object sender, SizeChangedEventArgs e)
         {
             CombBoxCust.Visibility = Visibility.Hidden;
+        }
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Period.Content = dat.SelectedDate;
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WSHospital.View"
         mc:Ignorable="d"
-        Title="StrahSch" Height="720" Width="1280">
+        Title="StrahSch" Height="620" Width="1280">
     <Window.Resources>
         <Style x:Key="BordKey" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
@@ -26,7 +26,7 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid>
+    <Grid Background="#FFF3F3F3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*"></ColumnDefinition>
             <ColumnDefinition Width="8*"></ColumnDefinition>
@@ -41,7 +41,7 @@
         <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
 
             <StackPanel>
-                <Label FontSize="18">Company</Label>
+                <Label FontSize="18" Background="White">Company</Label>
 
                 <Border Width="255" Height="28" Background="Black" BorderThickness="1" BorderBrush="#333333" Margin="121 0 0 0">
                     <Button Style="{StaticResource BordKey}" Name="bord" Click="bord_Click"></Button>
@@ -81,8 +81,8 @@
                 <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0 -130 0 0" Panel.ZIndex="1">
 
                     <StackPanel Orientation="Horizontal"  Panel.ZIndex="1">
-                        <Label FontSize="18" Panel.ZIndex="1">Период для оплаты</Label>
-                        <DatePicker Width="255" Height="28" Panel.ZIndex="1"></DatePicker>
+                        <Label FontSize="18" Panel.ZIndex="1" Background="White">Период для оплаты</Label>
+                        <DatePicker Width="255" Height="28" Panel.ZIndex="1" SelectedDateChanged="DatePicker_SelectedDateChanged" Name="dat" Background="White"></DatePicker>
                     </StackPanel>
 
                 </StackPanel>
@@ -116,6 +116,11 @@
                         <StackPanel Margin="0 5 0 0" Orientation="Horizontal">
                             <Label FontSize="18" Width="250" Height="35" HorizontalAlignment="Left">Итоговая стоимость:</Label>
                             <Label VerticalContentAlignment="Center" Height="35" Name="It" FontWeight="Bold" FontSize="17"></Label>
+                        </StackPanel>
+
+                        <StackPanel Margin="0 5 0 0" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label FontSize="18" Width="250" Height="35" HorizontalAlignment="Left">Период оплаты</Label>
+                            <Label VerticalContentAlignment="Center" Height="35" Name="Period" FontWeight="Bold" FontSize="17"></Label>
                         </StackPanel>
                     </StackPanel>
 

@@ -118,43 +118,39 @@ namespace WSHospital.View
                 {
                     var IdPat = md.Patients.Where(p => p.FIO.Equals(FIO.Text)).FirstOrDefault();
 
-                    var ServNam = md.SetServicee.Where(p => p.Name.Equals(NameServ.Text)).FirstOrDefault();
-
-                    double? sum = 0;
+                    var SetServNam = md.SetServicee.Where(p => p.Name.Equals(NameServ.Text)).FirstOrDefault();
+                    
 
                     var dop = DopServ.SelectedItems;
-                    var cost = md.LabServices.ToList();
+                    double? sum = 0;
+                    foreach(var item in dop)
+                    {
+                        var cost = md.LabServices.Where(p => p.Name.Equals(item.ToString())).FirstOrDefault();
+                        sum += cost.Cost;
+                    }
 
                     foreach (var item in dop)
                     {
-                        foreach (var item1 in cost)
+                        var ServNam = md.LabServices.Where(p => p.Name.Equals(item.ToString())).FirstOrDefault();
+
+                        orderr = new Orderr
                         {
-                            if (item.ToString() == item1.Name)
-                            {
-                                sum += item1.Cost;
-                            }
-                        }
+                            IDPatient = IdPat.ID,
+                            IDService = ServNam.ID,
+                            Status = "OK"
+                        };
+
+                        md.Orderr.Add(orderr);
+                        md.SaveChanges();
                     }
-
-                    orderr = new Orderr
-                    {
-                        IDPatient = IdPat.ID,
-                        IDService = ServNam.ID,
-                        Status = "OK"
-                    };
-
-                    md.Orderr.Add(orderr);
-                    md.SaveChanges();
 
                     if (DopServ.Items != null)
                     {
-                        var items = DopServ.SelectedItems;
-
-                        foreach(var item in items)
+                        foreach(var item in dop)
                         {
                             bioMaterial = new BioMaterial
                             {
-                                IDSetService = ServNam.ID,
+                                IDSetService = SetServNam.ID,
                                 BioCode = int.Parse(BioCodeA.Text),
                                 BioName = item.ToString()
                             };
@@ -167,7 +163,7 @@ namespace WSHospital.View
                     numAn = new NumberAnalyze
                     {
                         IDPatient = IdPat.ID,
-                        IDService = ServNam.ID,
+                        IDService = SetServNam.ID,
                     };
 
                     md.NumberAnalyze.Add(numAn);
