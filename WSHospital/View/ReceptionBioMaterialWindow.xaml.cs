@@ -211,9 +211,9 @@ namespace WSHospital.View
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            PrintDialog printDialog = new PrintDialog();
-            printDialog.ShowDialog();
-            printDialog.PrintVisual(canv, "");
+            //PrintDialog printDialog = new PrintDialog();
+            //printDialog.ShowDialog();
+            //printDialog.PrintVisual(canv, "");
         }     
 
         private void StackPanel_KeyDown(object sender, KeyEventArgs e)

@@ -9,17 +9,40 @@
         WindowStartupLocation="CenterScreen" BorderThickness="0" 
         BorderBrush="#0001FFFF">
     <Window.Resources>
+
+        <Style TargetType="Button" x:Key="Butt">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Background" Value="#FFC3C3C3"/>
+            <Setter Property="BorderThickness" Value="0"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0 0 1 1" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Gainsboro"></Setter>
+                </Trigger>
+
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Margin" Value="1 1 0 0"/>
+                </Trigger>
+            </Style.Triggers>
+            
+        </Style>
+
         <Style TargetType="TextBlock">
             <Setter Property="Height" Value="30"></Setter>
             <Setter Property="Width" Value="270"></Setter>
             <Setter Property="FontSize" Value="15"></Setter>
             <Setter Property="TextAlignment" Value="Center"></Setter>
             <Setter Property="Padding" Value="3"></Setter>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Height" Value="26"></Setter>
-            <Setter Property="Margin" Value="60 8 60 7"></Setter>
-            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
         </Style>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="15"></Setter>
@@ -75,14 +98,21 @@
             </Border.Background>
             <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Background="Transparent">
 
-                <Border BorderBrush="#FF8194A0" BorderThickness="3" Width="466" CornerRadius="5" Margin="0 5 0 0">
-                    <Button x:Name="bio" Click="bio_Click" BorderThickness="0" Margin="0" Background="Transparent" Width="450">Принять биоматериал</Button>
+                <Border Background="Black" Width="450" Height="26" Margin="5 15 5 5">
+                    <Button Style="{StaticResource Butt}" x:Name="bio" Click="bio_Click" Width="450">Принять биоматериал</Button>
                 </Border>
-
-                <Button x:Name="otch" Click="otch_Click">Сформировать отчеты</Button>
-                <Button x:Name="work" Click="work_Click">Работа с анализатором</Button>
-                <Button x:Name="LookOtch">Посмотреть отчеты</Button>
-                <Button x:Name="CreateSch" Click="CreateSch_Click">Сформировать счет страховой компании</Button>
+                <Border Background="Black" Width="450" Height="26" Margin="5">
+                    <Button Style="{StaticResource Butt}" x:Name="otch" Width="450">Сформировать отчеты</Button>
+                </Border>
+                <Border Background="Black" Width="450" Height="26" Margin="5">
+                    <Button Style="{StaticResource Butt}" x:Name="work" Click="work_Click" Width="450">Работа с анализатором</Button>
+                </Border>
+                <Border Background="Black" Width="450" Height="26" Margin="5">
+                    <Button Style="{StaticResource Butt}" x:Name="LookOtch" Width="450">Посмотреть отчеты</Button>
+                </Border>
+                <Border Background="Black" Width="450" Height="26" Margin="5">
+                    <Button Style="{StaticResource Butt}" x:Name="CreateSch" Click="CreateSch_Click" Width="450">Сформировать счет страховой компании</Button>
+                </Border>
             </StackPanel>
         </Border>
     </Grid>

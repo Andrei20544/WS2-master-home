@@ -50,6 +50,7 @@ namespace WSHospital.View
         private void ListComp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CompName.Content = ListComp.SelectedItem.ToString();
+            bordD.Content = ListComp.SelectedItem.ToString();
 
             ListPat.Items.Clear();
             ListPatSum.Items.Clear();

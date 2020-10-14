@@ -85,11 +85,6 @@ namespace WSHospital
             return bitmap;
         }
 
-        private void otch_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void CreateSch_Click(object sender, RoutedEventArgs e)
         {
             using(ModelBD md = new ModelBD())
