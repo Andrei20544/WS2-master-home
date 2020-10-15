@@ -77,6 +77,12 @@ namespace WSHospital.View
 
         }
 
+        public string GetBase64(string str)
+        {
+            var plainTextBytes = Encoding.UTF8.GetBytes(str);
+            return Convert.ToBase64String(plainTextBytes);
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PrintDialog print = new PrintDialog();
@@ -90,7 +96,7 @@ namespace WSHospital.View
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ссылка: " + link,"Link",MessageBoxButton.OKCancel);
+            MessageBox.Show(GetBase64(link));
         }
     }
 }
