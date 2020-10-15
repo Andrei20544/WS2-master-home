@@ -73,7 +73,7 @@ namespace WSHospital.View
                 }
             }
           
-            link = $"https://wsrussia.ru/?data=base64({OrderDateOne.Text}&{OrderNum.Text}&{NumProb.Text}&{PoliceNum.Text}&{FIO.Text}&{DateOfBirthP.Text}&{services}&{cost}";
+            link = $"{OrderDateOne.Text.Split(' ')[0]}E{OrderDateOne.Text.Split(' ')[1]}&{OrderNum.Text}&{NumProb.Text}&{PoliceNum.Text}&{FIO.Text}&{DateOfBirthP.Text}&{services}&{cost}";
 
         }
 
@@ -96,7 +96,11 @@ namespace WSHospital.View
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(GetBase64(link));
+            var lnk = "https://wsrussia.ru/?data=" + GetBase64(link);
+
+            Clipboard.SetText(lnk);
+
+            MessageBox.Show("Ссылка скопирована в буфер обмена: \n" + lnk);
         }
     }
 }
