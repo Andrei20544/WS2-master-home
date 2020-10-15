@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WSHospital.View
 {
@@ -128,17 +120,18 @@ namespace WSHospital.View
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string pathCsvFile = $"C:\\Users\\{Environment.UserName}.KBK\\Documents\\text.txt";
+            string pathCsvFile = $"C:\\Users\\{Environment.UserName}.KBK\\Documents\\text.csv";
 
-            string path = "C:\\Users\\208-it-09\\text.txt";
+            string path = "C:\\Users\\208-it-09\\text.csv";
+
 
             using (StreamWriter sw = new StreamWriter(pathCsvFile, true, System.Text.Encoding.Default))
             {
                 sw.WriteLine("Компания: " + CompName.Content + "\n" +
-                             "ФИО пациентов с оказанными услугами: " + ListPat.ItemsSource.ToString() + "\n" +
-                             "Стоимость услуг по каждому пациенту: " + ListPatSum.ItemsSource.ToString() + "\n" +
-                             "Итоговая стоимость: " + It.Content + "\n" +
-                             "Период оплаты: " + Period.Content);
+                              "ФИО пациентов с оказанными услугами: " + ListPat.ItemsSource.ToString() + "\n" +
+                              "Стоимость услуг по каждому пациенту: " + ListPatSum.ItemsSource.ToString() + "\n" +
+                              "Итоговая стоимость: " + It.Content + "\n" +
+                              "Период оплаты: " + Period.Content);
             }
 
             //for (int i = 0; i <= list1.Count; i++)

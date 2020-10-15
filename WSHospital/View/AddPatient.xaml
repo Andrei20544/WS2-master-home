@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WSHospital.View"
         mc:Ignorable="d"
         Title="AddPatient" Height="490" Width="500"
-        MinHeight="490" MinWidth="480" MaxHeight="500" MaxWidth="500">
+        MinHeight="490" MinWidth="480" MaxHeight="500" MaxWidth="500" Closed="Window_Closed">
     <Window.Resources>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="15"></Setter>

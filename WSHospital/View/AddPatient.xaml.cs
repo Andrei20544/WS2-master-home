@@ -19,6 +19,25 @@ namespace WSHospital.View
     /// </summary>
     public partial class AddPatient : Window
     {
+        private static AddPatient instance;
+
+        public static AddPatient getInst(int id, string shtr)
+        {
+            if (instance == null) instance = new AddPatient(id, shtr);
+            return instance;
+        }
+
+        public static AddPatient getInst(string shtrih)
+        {
+            if (instance == null) instance = new AddPatient(shtrih);
+            return instance;
+        }
+
+        public static void NullInst()
+        {
+            instance = null;
+        }
+
         public AddPatient(string shtrih)
         {
             InitializeComponent();
@@ -109,6 +128,11 @@ namespace WSHospital.View
                 }
 
             }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            NullInst();
         }
     }
 }

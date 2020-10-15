@@ -17,7 +17,6 @@ namespace WSHospital.View
 {
     public partial class ReceptionBioMaterialWindow : Window
     {
-
         public CheckBox check;
         public ReceptionBioMaterialWindow(Users u, int age, BitmapImage ph)
         {
@@ -188,7 +187,7 @@ namespace WSHospital.View
                 using (ModelBD md = new ModelBD())
                 {
                     var pat = md.Patients.Where(p => p.FIO.Equals(FIO.Text)).FirstOrDefault();
-                    AddPatient addPatient = new AddPatient(pat.ID, Shtr.Text);
+                    AddPatient addPatient = AddPatient.getInst(pat.ID, Shtr.Text);
                     addPatient.Show();
                 }
             }            
@@ -208,7 +207,7 @@ namespace WSHospital.View
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            AddPatient addPatient = new AddPatient(Shtr.Text);
+            AddPatient addPatient = AddPatient.getInst(Shtr.Text);
             addPatient.Show();
         }
 

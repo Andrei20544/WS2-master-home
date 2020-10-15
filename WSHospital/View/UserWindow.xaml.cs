@@ -17,11 +17,22 @@ using WSHospital.View;
 
 namespace WSHospital
 {
-    /// <summary>
-    /// Логика взаимодействия для UserWindow.xaml
-    /// </summary>
     public partial class UserWindow : Window
     {
+        private static UserWindow instance;
+        public static UserWindow getInst(Users U)
+        {
+            if (instance == null)
+                instance = new UserWindow(U);
+            return instance;
+        }
+
+        public static void NullInst()
+        {
+            instance = null;
+        }
+
+
         private Users user;
         private int Age;
         public UserWindow()
@@ -153,6 +164,11 @@ namespace WSHospital
         private void LookOtch_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            NullInst();
         }
     }
 }
