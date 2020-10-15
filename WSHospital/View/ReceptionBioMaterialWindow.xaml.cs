@@ -183,12 +183,15 @@ namespace WSHospital.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using(ModelBD md = new ModelBD())
+            if(FIO.Text != "")
             {
-                var pat = md.Patients.Where(p => p.FIO.Equals(FIO.Text)).FirstOrDefault();
-                AddPatient addPatient = new AddPatient(pat.ID, Shtr.Text);
-                addPatient.Show();
-            }
+                using (ModelBD md = new ModelBD())
+                {
+                    var pat = md.Patients.Where(p => p.FIO.Equals(FIO.Text)).FirstOrDefault();
+                    AddPatient addPatient = new AddPatient(pat.ID, Shtr.Text);
+                    addPatient.Show();
+                }
+            }            
         }
 
         private void Shtr_SelectionChanged(object sender, RoutedEventArgs e)

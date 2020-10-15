@@ -12,8 +12,11 @@
 
         <Style TargetType="Button" x:Key="Butt">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
+            
             <Setter Property="Background" Value="#FFC3C3C3"/>
             <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="Width" Value="450"/>
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -31,6 +34,7 @@
                 </Trigger>
 
                 <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="Gainsboro"></Setter>
                     <Setter Property="Margin" Value="1 1 0 0"/>
                 </Trigger>
             </Style.Triggers>
@@ -96,22 +100,23 @@
                     <GradientStop Color="#FFD4D4D4" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Background="Transparent">
+            
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Background="Transparent" Margin="0 12 0 0">
 
-                <Border Background="Black" Width="450" Height="26" Margin="5 15 5 5">
-                    <Button Style="{StaticResource Butt}" x:Name="bio" Click="bio_Click" Width="450">Принять биоматериал</Button>
+                <Border Background="Black" Width="450" Height="26" Margin="5" Name="bordBio">
+                    <Button Style="{StaticResource Butt}" x:Name="bio" Click="bio_Click">Принять биоматериал</Button>
                 </Border>
-                <Border Background="Black" Width="450" Height="26" Margin="5">
-                    <Button Style="{StaticResource Butt}" x:Name="otch" Width="450">Сформировать отчеты</Button>
+                <Border Background="Black" Width="450" Height="26" Margin="5" Name="bordOtch">
+                    <Button Style="{StaticResource Butt}" x:Name="otch">Сформировать отчеты</Button>
                 </Border>
-                <Border Background="Black" Width="450" Height="26" Margin="5">
-                    <Button Style="{StaticResource Butt}" x:Name="work" Click="work_Click" Width="450">Работа с анализатором</Button>
+                <Border Background="Black" Width="450" Height="26" Margin="5" Name="bordWork">
+                    <Button Style="{StaticResource Butt}" x:Name="work" Click="work_Click">Работа с анализатором</Button>
                 </Border>
-                <Border Background="Black" Width="450" Height="26" Margin="5">
-                    <Button Style="{StaticResource Butt}" x:Name="LookOtch" Width="450">Посмотреть отчеты</Button>
+                <Border Background="Black" Width="450" Height="26" Margin="5" Name="bordLookOtch">
+                    <Button Style="{StaticResource Butt}" x:Name="LookOtch" Click="LookOtch_Click">Посмотреть отчеты</Button>
                 </Border>
-                <Border Background="Black" Width="450" Height="26" Margin="5">
-                    <Button Style="{StaticResource Butt}" x:Name="CreateSch" Click="CreateSch_Click" Width="450">Сформировать счет страховой компании</Button>
+                <Border Background="Black" Width="450" Height="26" Margin="5" Name="bordCreateScg">
+                    <Button Style="{StaticResource Butt}" x:Name="CreateSch" Click="CreateSch_Click">Сформировать счет страховой компании</Button>
                 </Border>
             </StackPanel>
         </Border>

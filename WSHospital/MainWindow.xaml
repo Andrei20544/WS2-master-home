@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WSHospital"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="440" MaxHeight="550" MaxWidth="540" MinHeight="350" MinWidth="340" BorderThickness="5" BorderBrush="#FFC1C1C1" WindowStartupLocation="CenterScreen">
+        Title="Login" Height="450" Width="440" MaxHeight="550" MaxWidth="540" MinHeight="350" MinWidth="340" BorderThickness="5" BorderBrush="#FFC1C1C1" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="BorderThickness" Value="0"></Setter>
@@ -21,8 +21,35 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
         </Style>
 
-        <Style TargetType="Button">
-            
+        <Style TargetType="Button" x:Key="butt">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Width" Value="370"/>
+            <Setter Property="Height" Value="31"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Background" Value="#FF95A3B2"/>
+            <Setter Property="BorderThickness" Value="0"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFACBCCD"/>
+                </Trigger>
+
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#FFACBCCD"/>
+                    <Setter Property="Margin" Value="1 1 0 0"/>
+                </Trigger>
+            </Style.Triggers>
+
         </Style>
         
     </Window.Resources>
@@ -46,12 +73,12 @@
                 <PasswordBox BorderThickness="0" Background="Transparent" Name="PASS" Password="X$9rJpYU" HorizontalContentAlignment="Center" Height="30" VerticalContentAlignment="Center" FontSize="17"></PasswordBox>
             </Border>
 
-            <Border BorderBrush="#FF95A3B2" Margin="0 85 0 0" Height="40" CornerRadius="8" BorderThickness="1" Width="380" Background="#FF95A3B2">
-                <Button Width="370" Height="31" FontSize="17" Background="#FF95A3B2" Click="Button_Click" BorderThickness="0">Sign in</Button>
+            <Border Margin="0 85 0 0" Height="31" Width="370" Background="#FF697581">
+                <Button Style="{StaticResource butt}" Click="Button_Click">Sign in</Button>
             </Border>
 
-            <Border BorderBrush="#FF95A3B2" Margin="0 15 0 0" Height="40" CornerRadius="8" BorderThickness="1" Width="380" Background="#FF95A3B2">
-                <Button Width="370" Height="31" FontSize="17" Background="#FF95A3B2" BorderThickness="0" Click="Button_Click_1">Sign up</Button>
+            <Border BorderBrush="#FF95A3B2" Margin="0 15 0 0" Height="31" Width="370" Background="#FF697581">
+                <Button Style="{StaticResource butt}" Click="Button_Click_1">Sign up</Button>
             </Border>
 
         </StackPanel>

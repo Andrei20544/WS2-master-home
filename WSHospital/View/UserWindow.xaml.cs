@@ -55,19 +55,32 @@ namespace WSHospital
             if(user.RoleID == 1)
             {
                 work.Visibility = Visibility.Collapsed;
+                bordWork.Visibility = Visibility.Collapsed;
+
                 LookOtch.Visibility = Visibility.Collapsed;
+                bordLookOtch.Visibility = Visibility.Collapsed;
+
                 CreateSch.Visibility = Visibility.Collapsed;
+                bordCreateScg.Visibility = Visibility.Collapsed;
             }
             else if (user.RoleID == 2)
             {
                 LookOtch.Visibility = Visibility.Collapsed;
-                CreateSch.Visibility = Visibility.Visible;
+                bordLookOtch.Visibility = Visibility.Collapsed;
+
+                CreateSch.Visibility = Visibility.Collapsed;
+                bordCreateScg.Visibility = Visibility.Collapsed;
             }
             else
             {
                 bio.Visibility = Visibility.Collapsed;
+                bordBio.Visibility = Visibility.Collapsed;
+
                 otch.Visibility = Visibility.Collapsed;
+                bordOtch.Visibility = Visibility.Collapsed;
+
                 work.Visibility = Visibility.Collapsed;
+                bordWork.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -135,6 +148,11 @@ namespace WSHospital
         {
             Analyzer analyzer = new Analyzer();
             analyzer.Show();
+        }
+
+        private void LookOtch_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
