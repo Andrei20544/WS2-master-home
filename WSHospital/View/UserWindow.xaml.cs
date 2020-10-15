@@ -68,8 +68,8 @@ namespace WSHospital
                 LookOtch.Visibility = Visibility.Collapsed;
                 bordLookOtch.Visibility = Visibility.Collapsed;
 
-                CreateSch.Visibility = Visibility.Collapsed;
-                bordCreateScg.Visibility = Visibility.Collapsed;
+                CreateSch.Visibility = Visibility.Visible;
+                bordCreateScg.Visibility = Visibility.Visible;
             }
             else
             {

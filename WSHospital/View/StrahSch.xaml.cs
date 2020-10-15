@@ -67,7 +67,8 @@ namespace WSHospital.View
                            {
                                NamePat = p.FIO,
                                Serv = ls.Name,
-                               Cost = ls.Cost
+                               Cost = ls.Cost,
+                               Date = ls.Period
                            };
 
                 var PatNam = md.Patients.ToList();
@@ -79,7 +80,7 @@ namespace WSHospital.View
                     {
                         if (item.FIO == item1.NamePat)
                         {
-                            serv += item1.Serv + ", ";
+                            serv += item1.Serv + $", \n {new string(' ', item1.NamePat.Length + 12)}";
                         }                       
                     }
                     var comp = md.Company.Where(p => p.Name.Equals(CompName.Content.ToString())).FirstOrDefault();
