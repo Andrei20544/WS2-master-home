@@ -129,7 +129,21 @@
                 <Border Width="26" Height="26" Background="Black" Margin="0 0 2 0" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <Button Style="{StaticResource ExitButton}" Click="Button_Click_5" Name="ex" ></Button>
                 </Border>
-                <Label FontSize="15" HorizontalAlignment="Left" Width="1050">Прием биоматериала</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="30" MouseDown="Image_MouseDown">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Source" Value="/Assets/back.png"></Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Source" Value="/Assets/backWhite.png" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <Label FontSize="15" HorizontalAlignment="Left" Width="1050">Прием биоматериала</Label>
+                </StackPanel>
             </Grid>
 
             <Border BorderBrush="#FF8C9AA6" BorderThickness="0" CornerRadius="15" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalAlignment="Center">

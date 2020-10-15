@@ -192,6 +192,15 @@
     <Resource Include="Assets\img8.png" />
     <Resource Include="Assets\img9.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\monotone_arrow_left_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\backWhite.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -19,6 +19,19 @@ namespace WSHospital.View
     /// </summary>
     public partial class Order : Window
     {
+        private static Order instance;
+
+        public static Order GetInst(ListBox serv, double? cost, int idpat, long SHtr)
+        {
+            if (instance == null) instance = new Order(serv, cost, idpat, SHtr);
+            return instance;
+        }
+
+        public static void NullInst()
+        {
+            instance = null;
+        }
+
         public Order()
         {
             InitializeComponent();
@@ -101,6 +114,11 @@ namespace WSHospital.View
             Clipboard.SetText(lnk);
 
             MessageBox.Show("Ссылка скопирована в буфер обмена: \n" + lnk);
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            NullInst();
         }
     }
 }

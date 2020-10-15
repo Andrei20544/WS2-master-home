@@ -57,12 +57,14 @@
 
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Width="120">TypePolicy</Label>
-                <ComboBox Name="PolName" Width="250"></ComboBox>
+                <TextBox x:Name="PolNameBox" Width="250" Visibility="Visible"></TextBox>
+                <ComboBox Name="PolName" Width="250" Visibility="Collapsed"></ComboBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Width="120">Company</Label>
-                <ComboBox Name="CompName" Width="250"></ComboBox>
+                <TextBox x:Name="CompNameBox" Width="250" Visibility="Visible"></TextBox>
+                <ComboBox Name="CompName" Width="250" Visibility="Collapsed"></ComboBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="5">

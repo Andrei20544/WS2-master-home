@@ -42,6 +42,12 @@ namespace WSHospital.View
         {
             InitializeComponent();
 
+            PolName.Visibility = Visibility.Visible;
+            PolNameBox.Visibility = Visibility.Collapsed;
+
+            CompName.Visibility = Visibility.Visible;
+            CompNameBox.Visibility = Visibility.Collapsed;
+
             Shtrih.Text = shtrih;
 
             using (ModelBD md = new ModelBD())
@@ -76,6 +82,12 @@ namespace WSHospital.View
         {
             InitializeComponent();
 
+            PolName.Visibility = Visibility.Collapsed;
+            PolNameBox.Visibility = Visibility.Visible;
+
+            CompName.Visibility = Visibility.Collapsed;
+            CompNameBox.Visibility = Visibility.Visible;
+
             using (ModelBD md = new ModelBD())
             {
                 var patient = md.Patients.Where(p => p.ID.Equals(id)).FirstOrDefault();
@@ -86,8 +98,8 @@ namespace WSHospital.View
                 pPassportData.Text = patient.PassportData;
                 pPhone.Text = patient.Phone.ToString();
                 pInsPolicy.Text = patient.InsurancePolicy.ToString();
-                PolName.SelectedItem = patient.TypeOfPolicy;
-                CompName.SelectedItem = patient.Company;
+                PolNameBox.Text = patient.TypeOfPolicy;
+                CompNameBox.Text = patient.Company.Name;
 
                 Shtrih.Text = shtr;
             }

@@ -169,7 +169,7 @@ namespace WSHospital.View
 
                     DateTime dat = DateTime.Now;
 
-                    Order order = new Order(DopServ, sum, IdPat.ID, long.Parse(Shtr.Text));
+                    Order order = Order.GetInst(DopServ, sum, IdPat.ID, long.Parse(Shtr.Text));
                     order.Show();
                 }
                 catch (Exception ex)
@@ -190,7 +190,11 @@ namespace WSHospital.View
                     AddPatient addPatient = AddPatient.getInst(pat.ID, Shtr.Text);
                     addPatient.Show();
                 }
-            }            
+            }
+            else
+            {
+                MessageBox.Show("Введите имя пользователя!");
+            }
         }
 
         private void Shtr_SelectionChanged(object sender, RoutedEventArgs e)
@@ -492,6 +496,13 @@ namespace WSHospital.View
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ReceptionBioMaterialWindow rbw = new ReceptionBioMaterialWindow();
+            rbw.Show();
             this.Close();
         }
 
