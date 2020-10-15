@@ -13,12 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WSHospital.View;
+using System.IO;
 
 namespace WSHospital
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -28,6 +26,7 @@ namespace WSHospital
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             if (LOG.Text.Length == 0 && PASS.Password.Length == 0)
             {
                 MessageBox.Show("Введите логин и пароль");

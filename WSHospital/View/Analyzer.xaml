@@ -19,7 +19,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Path=id}" Width="35" />
                 <DataGridTextColumn Header="Название сервиса" Binding="{Binding Path=name}" Width="200" />
-                <DataGridHyperlinkColumn Header="Статус" Binding="{Binding Path=status}" Width="120" />
+                <DataGridTextColumn Header="Статус" Binding="{Binding Path=status}" Width="120" />
                 <DataGridTextColumn Header="Цена" Binding="{Binding Path=cost}" Width="150" />
                 <DataGridTemplateColumn Header="Отправка на анализатор" Width="255">
                     <DataGridTemplateColumn.CellTemplate>

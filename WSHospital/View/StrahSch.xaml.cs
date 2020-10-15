@@ -128,18 +128,26 @@ namespace WSHospital.View
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string pathCsvFile = $"C:\\Users\\{Environment.UserName}.KBK\\Documents";
+            string pathCsvFile = $"C:\\Users\\{Environment.UserName}.KBK\\Documents\\text.txt";
 
-            using (var w = new StreamWriter(pathCsvFile))
+            string path = "C:\\Users\\208-it-09\\text.txt";
+
+            using (StreamWriter sw = new StreamWriter(pathCsvFile, true, System.Text.Encoding.Default))
             {
-                for (int i = 0; i <= list1.Count; i++)
-                {
-                    var first = list1[i];
-                    var line = string.Format($"{first}");
-                    w.WriteLine(line);
-                    w.Flush();
-                }
+                sw.WriteLine("Компания: " + CompName.Content + "\n" +
+                             "ФИО пациентов с оказанными услугами: " + ListPat.ItemsSource.ToString() + "\n" +
+                             "Стоимость услуг по каждому пациенту: " + ListPatSum.ItemsSource.ToString() + "\n" +
+                             "Итоговая стоимость: " + It.Content + "\n" +
+                             "Период оплаты: " + Period.Content);
             }
+
+            //for (int i = 0; i <= list1.Count; i++)
+            //{
+            //    var first = list1[i];
+            //    var line = string.Format($"{first}");
+            //    w.WriteLine(line);
+            //    w.Flush();
+            //}
         }
 
         private void CompName_SizeChanged_1(object sender, SizeChangedEventArgs e)
