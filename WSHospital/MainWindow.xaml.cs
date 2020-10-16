@@ -63,6 +63,8 @@ namespace WSHospital
                         Users user = md.Users.Where(p => p.Login.Equals(LOG.Text) && p.Password.Equals(PASS.Password)).FirstOrDefault();
                         UserWindow userWindow = UserWindow.getInst(user);
                         userWindow.Show();
+
+                        this.Close();
                     }
                 }
 

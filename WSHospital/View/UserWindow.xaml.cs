@@ -97,7 +97,7 @@ namespace WSHospital
 
         private void bio_Click(object sender, RoutedEventArgs e)
         {
-            ReceptionBioMaterialWindow RBMW = new ReceptionBioMaterialWindow(user, Age, GetBitmap());
+            ReceptionBioMaterialWindow RBMW = ReceptionBioMaterialWindow.GetInst();
             RBMW.Show();
         }
 

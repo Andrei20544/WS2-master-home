@@ -17,8 +17,22 @@ namespace WSHospital.View
 {
     public partial class ReceptionBioMaterialWindow : Window
     {
+        public static ReceptionBioMaterialWindow instance;
+
+        public static ReceptionBioMaterialWindow GetInst()
+        {
+            if (instance == null) instance = new ReceptionBioMaterialWindow();
+            return instance;
+        }
+
+        public static void NullInst()
+        {
+            instance = null;
+        }
+
+
         public CheckBox check;
-        public ReceptionBioMaterialWindow(Users u, int age, BitmapImage ph)
+        public ReceptionBioMaterialWindow()
         {
             InitializeComponent();
 
@@ -28,8 +42,6 @@ namespace WSHospital.View
             buttonAnimation.Duration = TimeSpan.FromMilliseconds(200);
             ex.BeginAnimation(Button.WidthProperty, buttonAnimation);
         }
-
-        public ReceptionBioMaterialWindow() {}
 
         public Random rnd;
 
@@ -51,6 +63,7 @@ namespace WSHospital.View
         public string BarCodeGenerate()
         {
             rnd = new Random();
+
             long CodeZakaza = rnd.Next();
             long day = DateTime.Now.Millisecond;
             string prefix = CodeZakaza.ToString().Substring(0, 2);
@@ -543,6 +556,11 @@ namespace WSHospital.View
             }
 
             canv.Children.Add(stackPanel);
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            NullInst();
         }
 
         //
