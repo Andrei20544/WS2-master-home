@@ -16,9 +16,21 @@ namespace WSHospital.View
 {
     public partial class ServOtch : Window
     {
+        public class GetTAble
+        {
+            public int Kserv { get; set; }
+            public int Kpat { get; set; }
+            public int AvgDay { get; set; }
+            public int Sserv { get; set; }
+        }
+
         public ServOtch()
         {
             InitializeComponent();
+
+            GetTAble get = new GetTAble();
+
+            grid.DataContext = get;
 
             DatFirst.SelectedDate = DateTime.Parse("10.09.2020");
             DatLast.SelectedDate = DateTime.Parse("25.09.2020");
@@ -27,6 +39,8 @@ namespace WSHospital.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            grid.Items.Clear();
+
             using (ModelBD md = new ModelBD())
             {
                 var dat = md.Rendering.ToList();
@@ -79,43 +93,16 @@ namespace WSHospital.View
 
                 KPat.Text = count.ToString();
 
-                
+                GetTAble get = new GetTAble
+                {
+                    Kserv = int.Parse(KServ.Text),
+                    Sserv = int.Parse(KSserv.Text),
+                    Kpat = int.Parse(KPat.Text)
+                };
 
+                grid.Items.Add(get);
                 
             }
         }
-
-        //public void GetGraph()
-        //{
-        //    int sum = int.Parse(KServ.Text) + int.Parse(KPat.Text) + int.Parse(AvgKPatDay.Text) + ServP.Items.Count;
-
-        //    string[] otchName = new string[4] { one.Content.ToString(), two.Content.ToString(), thr.Content.ToString(), fr.Content.ToString() };
-        //    string[] otchName_2 = new string[4] { KServ.Text, KPat.Text, AvgKPatDay.Text, ServP.Items.Count.ToString() };
-
-        //    StackPanel stack = new StackPanel();
-        //    stack.Orientation = Orientation.Horizontal;
-        //    stack.VerticalAlignment = VerticalAlignment.Center;
-        //    stack.HorizontalAlignment = HorizontalAlignment.Center;
-
-        //    for (int i = 0; i < 4; i++)
-        //    {
-        //        Rectangle rectangle = new Rectangle();
-        //        Label label = new Label();
-
-        //        label.Content = otchName[i];
-        //        label.Margin = new Thickness(5, 0, 0, 0);
-        //        label.VerticalAlignment = VerticalAlignment.Bottom;
-        //        label.RenderTransformOrigin = new Point(-90, 0);
-        //        rectangle.Width = 5;
-        //        rectangle.Height = int.Parse(otchName_2[i]) * 3;
-        //        rectangle.Fill = Brushes.Black;
-
-        //        stack.Children.Add(label);
-        //        stack.Children.Add(rectangle);
-
-        //    }
-
-        //    canv.Children.Add(stack);
-        //}
     }
 }

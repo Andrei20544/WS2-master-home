@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WSHospital.View"
         mc:Ignorable="d"
-        Title="ServOtch" Height="685" Width="1100">
+        Title="ServOtch" Height="720" Width="1100">
 
     <Window.Resources>
         <Style TargetType="Label" x:Key="Lab">
@@ -15,7 +15,7 @@
         </Style>
 
         <Style TargetType="Label">
-            <Setter Property="Width" Value="300"/>
+            <Setter Property="Width" Value="350"/>
         </Style>
         
     </Window.Resources>
@@ -66,12 +66,17 @@
                     <TextBlock Width="250" Name="KSserv" FontSize="25">ds</TextBlock>
                 </StackPanel>
 
-                <DataGrid x:Name="grid" AutoGenerateColumns="False" FontSize="16">
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
+                    <Label Content="Результат каждого исследования в день: " FontSize="18" VerticalContentAlignment="Center" VerticalAlignment="Top" ></Label>
+                    <TextBlock Width="250" Name="KRes" FontSize="25">ds</TextBlock>
+                </StackPanel>
+
+                <DataGrid x:Name="grid" AutoGenerateColumns="False" FontSize="16" DataContext="{Binding GetTable}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Кол-во оказанных услуг" Width="220"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Кол-во пациентов" Width="150"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Кол-во оказанных услуг" Width="220" Binding="{Binding Kserv}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Кол-во пациентов" Width="150" Binding="{Binding Kpat}"></DataGridTextColumn>
                         <DataGridTextColumn Header="среднее кол-во пациентов в день" Width="290"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Перечень оказанных услуг" Width="390"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Перечень оказанных услуг" Width="380" Binding="{Binding Sserv}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
                 
