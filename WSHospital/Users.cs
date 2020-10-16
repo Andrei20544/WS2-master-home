@@ -8,12 +8,6 @@ namespace WSHospital
 
     public partial class Users
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
-        {
-            Rendering = new HashSet<Rendering>();
-        }
-
         public int ID { get; set; }
 
         [StringLength(255)]
@@ -46,9 +40,6 @@ namespace WSHospital
         public string Gender { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rendering> Rendering { get; set; }
 
         public virtual Rolee Rolee { get; set; }
     }

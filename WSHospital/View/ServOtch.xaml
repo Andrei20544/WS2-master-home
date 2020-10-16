@@ -11,6 +11,7 @@
         <Style TargetType="Label" x:Key="Lab">
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
         <Style TargetType="Label">
@@ -37,33 +38,42 @@
                     <Label VerticalContentAlignment="Center" FontSize="18" HorizontalAlignment="Left">Период:</Label>
                     <StackPanel Orientation="Horizontal" Margin="0 15 0 0">
                         <Label Style="{StaticResource Lab}" Margin="25 0 0 0">от:</Label>
-                        <DatePicker Width="250" Height="35" Margin="5 0 0 0" FontSize="15"></DatePicker>
+                        <DatePicker Width="250" Height="35" Margin="5 0 0 0" FontSize="15" Name="DatFirst"></DatePicker>
                         <Label Style="{StaticResource Lab}" Margin="15 0 0 0">до:</Label>
-                        <DatePicker Width="250" Height="35" Margin="5 0 0 0" FontSize="15"></DatePicker>
+                        <DatePicker Width="250" Height="35" Margin="5 0 0 0" FontSize="15" Name="DatLast"></DatePicker>
+
+                        <Button Margin="10 0 0 0" Click="Button_Click">просмотреть</Button>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
-                    <Label Content="Кол-во оказанных услуг: " FontSize="18" VerticalContentAlignment="Center"></Label>
-                    <TextBlock Width="250" Height="35" FontSize="25">ds</TextBlock>
+                    <Label Content="Кол-во оказанных услуг: " FontSize="18" VerticalContentAlignment="Center" Name="one"></Label>
+                    <TextBlock Width="250" Height="35" FontSize="25" Name="KServ">ds</TextBlock>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
-                    <Label Content="Кол-во пациентов: " FontSize="18" VerticalContentAlignment="Center"></Label>
-                    <TextBlock Width="250" Height="35" FontSize="25">ds</TextBlock>
+                    <Label Content="Кол-во пациентов: " FontSize="18" VerticalContentAlignment="Center" Name="two"></Label>
+                    <TextBlock Width="250" Height="35" FontSize="25" Name="KPat">ds</TextBlock>
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
-                    <Label Content="среднее кол-во пациентов в день: " FontSize="18" VerticalContentAlignment="Center"></Label>
-                    <TextBlock Width="250" Height="35" FontSize="25">ds</TextBlock>
+                    <Label Content="среднее кол-во пациентов в день: " FontSize="18" VerticalContentAlignment="Center" Name="thr"></Label>
+                    <TextBlock Width="250" Height="35" FontSize="25" Name="AvgKPatDay">ds</TextBlock>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
-                    <Label Content="Перечень оказанных услуг: " FontSize="18" VerticalContentAlignment="Center" VerticalAlignment="Top"></Label>
-                    <ComboBox Width="250"></ComboBox>
+                    <Label Content="Перечень оказанных услуг: " FontSize="18" VerticalContentAlignment="Center" VerticalAlignment="Top" Name="fr"></Label>
+                    <TextBlock Width="250" Name="KSserv" FontSize="25">ds</TextBlock>
                 </StackPanel>
 
-                <Canvas Width="1062" Height="300" Background="#FFF1F1F1"></Canvas>
+                <DataGrid x:Name="grid" AutoGenerateColumns="False" FontSize="16">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Кол-во оказанных услуг" Width="220"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Кол-во пациентов" Width="150"></DataGridTextColumn>
+                        <DataGridTextColumn Header="среднее кол-во пациентов в день" Width="290"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Перечень оказанных услуг" Width="390"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
                 
             </StackPanel>
         </Grid>

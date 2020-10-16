@@ -8,7 +8,7 @@ namespace WSHospital
     public partial class ModelBD : DbContext
     {
         public ModelBD()
-            : base("name=ModelBD2")
+            : base("name=ModelBD")
         {
         }
 
@@ -41,11 +41,6 @@ namespace WSHospital
                 .WithOptional(e => e.LabServices)
                 .HasForeignKey(e => e.IDService);
 
-            modelBuilder.Entity<LabServices>()
-                .HasMany(e => e.Rendering)
-                .WithOptional(e => e.LabServices)
-                .HasForeignKey(e => e.IDService);
-
             modelBuilder.Entity<Patients>()
                 .HasMany(e => e.NumberAnalyze)
                 .WithOptional(e => e.Patients)
@@ -65,11 +60,6 @@ namespace WSHospital
                 .HasMany(e => e.LabServices)
                 .WithOptional(e => e.SetServicee)
                 .HasForeignKey(e => e.IDSetService);
-
-            modelBuilder.Entity<Users>()
-                .HasMany(e => e.Rendering)
-                .WithOptional(e => e.Users)
-                .HasForeignKey(e => e.UserID);
         }
     }
 }

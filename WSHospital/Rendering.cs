@@ -9,19 +9,16 @@ namespace WSHospital
     [Table("Rendering")]
     public partial class Rendering
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
-        public int? IDService { get; set; }
+        public int IdService { get; set; }
 
-        public DateTime? Period { get; set; }
+        [StringLength(255)]
+        public string Period { get; set; }
 
-        public int? UserID { get; set; }
+        public int UserId { get; set; }
 
         [StringLength(255)]
         public string Analyzer { get; set; }
-
-        public virtual LabServices LabServices { get; set; }
-
-        public virtual Users Users { get; set; }
     }
 }

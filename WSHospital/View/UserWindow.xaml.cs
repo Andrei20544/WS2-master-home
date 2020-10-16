@@ -77,8 +77,8 @@ namespace WSHospital
             }
             else if (user.RoleID == 2)
             {
-                LookOtch.Visibility = Visibility.Collapsed;
-                bordLookOtch.Visibility = Visibility.Collapsed;
+                LookOtch.Visibility = Visibility.Visible;
+                bordLookOtch.Visibility = Visibility.Visible;
 
                 CreateSch.Visibility = Visibility.Visible;
                 bordCreateScg.Visibility = Visibility.Visible;
@@ -164,7 +164,8 @@ namespace WSHospital
 
         private void LookOtch_Click(object sender, RoutedEventArgs e)
         {
-
+            ServOtch serv = new ServOtch();
+            serv.Show();
         }
 
         private void Window_Closed(object sender, EventArgs e)

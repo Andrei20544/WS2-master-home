@@ -13,7 +13,6 @@ namespace WSHospital
         {
             NumberAnalyze = new HashSet<NumberAnalyze>();
             Orderr = new HashSet<Orderr>();
-            Rendering = new HashSet<Rendering>();
         }
 
         public int ID { get; set; }
@@ -39,8 +38,5 @@ namespace WSHospital
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orderr> Orderr { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rendering> Rendering { get; set; }
     }
 }
