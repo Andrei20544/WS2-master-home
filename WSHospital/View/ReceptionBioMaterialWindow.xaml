@@ -154,7 +154,7 @@
 
                         <Label>Введите штрих код</Label>
                         <StackPanel Orientation="Horizontal" KeyDown="StackPanel_KeyDown" Height="35">
-                            <TextBox Width="400" Height="35" Name="Shtr" SelectionChanged="Shtr_SelectionChanged" VerticalContentAlignment="Center" FontSize="17" MaxLength="13" Background="#FF8ABAD3" BorderThickness="0"/>
+                            <TextBox Width="400" Height="35" Name="Shtr" SelectionChanged="Shtr_SelectionChanged" VerticalContentAlignment="Center" FontSize="17" MaxLength="13" Background="#FF8ABAD3" BorderThickness="0" TextChanged="Shtr_TextChanged"/>
                             
                             <Border Background="Black" Width="150" Height="35" Margin="10 0 0 0" BorderThickness="0">
                                 <Button Style="{StaticResource BordKey}" Width="150" Height="35" Click="Button_Click_2" Name="gen">Сгенерировать</Button>

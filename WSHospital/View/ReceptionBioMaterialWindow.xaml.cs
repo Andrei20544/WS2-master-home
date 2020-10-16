@@ -63,12 +63,14 @@ namespace WSHospital.View
         //Code
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            if (Shtr.Text == "") canv.Children.Clear();
+
             string barcode = BarCodeGenerate();
 
             StackPanel stackPanel = new StackPanel();
             stackPanel.Orientation = Orientation.Horizontal;
             stackPanel.VerticalAlignment = VerticalAlignment.Bottom;
-            stackPanel.Margin = new Thickness(80, 0, 0, 0);
+            stackPanel.Margin = new Thickness(85, 0, 0, 0);
             stackPanel.Width = 520;
             stackPanel.Height = 140;
 
@@ -501,9 +503,46 @@ namespace WSHospital.View
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ReceptionBioMaterialWindow rbw = new ReceptionBioMaterialWindow();
-            rbw.Show();
+            MainWindow main = new MainWindow();
+            main.Show();
             this.Close();
+        }
+
+        private void Shtr_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (Shtr.Text == "") canv.Children.Clear();
+
+            StackPanel stackPanel = new StackPanel();
+            stackPanel.Orientation = Orientation.Horizontal;
+            stackPanel.VerticalAlignment = VerticalAlignment.Bottom;
+            stackPanel.Margin = new Thickness(85, 0, 0, 0);
+            stackPanel.Width = 520;
+            stackPanel.Height = 140;
+
+            for (int i = 0; i < Shtr.Text.Length; i++)
+            {
+                Rectangle rectangle = new Rectangle();
+                Label label = new Label();
+                label.VerticalAlignment = VerticalAlignment.Bottom;
+
+                StackPanel stackPanel1 = new StackPanel();
+                stackPanel1.Orientation = Orientation.Horizontal;
+                stackPanel1.VerticalAlignment = VerticalAlignment.Bottom;
+
+                rectangle.Fill = Brushes.Black;
+                rectangle.Width = int.Parse(Shtr.Text[i].ToString());
+                rectangle.Height = 100;
+
+                label.Content = Shtr.Text[i];
+                label.Margin = new Thickness(0, 20, 0, 0);
+
+                stackPanel1.Children.Add(label);
+                stackPanel1.Children.Add(rectangle);
+
+                stackPanel.Children.Add(stackPanel1);
+            }
+
+            canv.Children.Add(stackPanel);
         }
 
         //
