@@ -24,6 +24,9 @@ namespace WSHospital.View
             public int Sserv { get; set; }
         }
 
+        public DateTime dat;
+        public DateTime dat_1;
+
         public ServOtch()
         {
             InitializeComponent();
@@ -36,6 +39,8 @@ namespace WSHospital.View
             DatLast.SelectedDate = DateTime.Parse("25.09.2020");
 
         }
+
+       
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
