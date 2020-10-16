@@ -77,10 +77,12 @@ namespace WSHospital.View
         }
 
         public AddPatient() { }
+        public int IDPAT;
 
         public AddPatient(int id, string shtr)
         {
             InitializeComponent();
+            IDPAT = id;
 
             PolName.Visibility = Visibility.Collapsed;
             PolNameBox.Visibility = Visibility.Visible;
@@ -92,6 +94,7 @@ namespace WSHospital.View
             {
                 var patient = md.Patients.Where(p => p.ID.Equals(id)).FirstOrDefault();
 
+
                 pFIO.Text = patient.FIO;
                 DaT.SelectedDate = patient.DateOfBirth;
                 pEmail.Text = patient.Email;
@@ -99,15 +102,8 @@ namespace WSHospital.View
                 pPhone.Text = patient.Phone.ToString();
                 pInsPolicy.Text = patient.InsurancePolicy.ToString();
                 PolNameBox.Text = patient.TypeOfPolicy;
-                CompNameBox.Text = patient.Company.Name;
-
-                Shtrih.Text = shtr;
-
-                md.Entry(patient).State = System.Data.Entity.EntityState.Modified;
-                md.SaveChanges();
+                CompNameBox.Text = patient.Company.Name;  
             }
-
-
         }
 
         public Patients pat;
@@ -150,6 +146,30 @@ namespace WSHospital.View
         private void Window_Closed(object sender, EventArgs e)
         {
             NullInst();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            using(ModelBD md = new ModelBD())
+            {
+                var compId = md.Company.Where(p => p.Name.Equals(CompNameBox.Text)).FirstOrDefault();
+
+                Patients patients = new Patients
+                {
+                    ID = IDPAT,
+                    FIO = pFIO.Text,
+                    DateOfBirth = DaT.SelectedDate,
+                    Email = pEmail.Text,
+                    PassportData = pPassportData.Text,
+                    Phone = int.Parse(pPhone.Text),
+                    InsurancePolicy = int.Parse(pInsPolicy.Text),
+                    TypeOfPolicy = PolNameBox.Text,
+                    IDCompany = compId.ID
+                };
+
+                md.Entry(patients).State = System.Data.Entity.EntityState.Modified;
+                md.SaveChanges();
+            }
         }
     }
 }
