@@ -196,7 +196,7 @@ namespace WSHospital.View
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             if(FIO.Text != "")
             {
                 using (ModelBD md = new ModelBD())

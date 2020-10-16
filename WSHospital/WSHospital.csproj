@@ -103,6 +103,9 @@
     <Compile Include="View\ReceptionBioMaterialWindow.xaml.cs">
       <DependentUpon>ReceptionBioMaterialWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ServOtch.xaml.cs">
+      <DependentUpon>ServOtch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StrahSch.xaml.cs">
       <DependentUpon>StrahSch.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ReceptionBioMaterialWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ServOtch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

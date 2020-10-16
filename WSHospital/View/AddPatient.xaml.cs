@@ -48,6 +48,9 @@ namespace WSHospital.View
             CompName.Visibility = Visibility.Visible;
             CompNameBox.Visibility = Visibility.Collapsed;
 
+            save.Visibility = Visibility.Collapsed;
+            add.Visibility = Visibility.Visible;
+
             Shtrih.Text = shtrih;
 
             using (ModelBD md = new ModelBD())
@@ -89,6 +92,9 @@ namespace WSHospital.View
 
             CompName.Visibility = Visibility.Collapsed;
             CompNameBox.Visibility = Visibility.Visible;
+
+            save.Visibility = Visibility.Visible;
+            add.Visibility = Visibility.Collapsed;
 
             using (ModelBD md = new ModelBD())
             {
@@ -150,25 +156,34 @@ namespace WSHospital.View
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            using(ModelBD md = new ModelBD())
+            try
             {
-                var compId = md.Company.Where(p => p.Name.Equals(CompNameBox.Text)).FirstOrDefault();
-
-                Patients patients = new Patients
+                using (ModelBD md = new ModelBD())
                 {
-                    ID = IDPAT,
-                    FIO = pFIO.Text,
-                    DateOfBirth = DaT.SelectedDate,
-                    Email = pEmail.Text,
-                    PassportData = pPassportData.Text,
-                    Phone = int.Parse(pPhone.Text),
-                    InsurancePolicy = int.Parse(pInsPolicy.Text),
-                    TypeOfPolicy = PolNameBox.Text,
-                    IDCompany = compId.ID
-                };
+                    var compId = md.Company.Where(p => p.Name.Equals(CompNameBox.Text)).FirstOrDefault();
 
-                md.Entry(patients).State = System.Data.Entity.EntityState.Modified;
-                md.SaveChanges();
+                    Patients patients = new Patients
+                    {
+                        ID = IDPAT,
+                        FIO = pFIO.Text,
+                        DateOfBirth = DaT.SelectedDate,
+                        Email = pEmail.Text,
+                        PassportData = pPassportData.Text,
+                        Phone = long.Parse(pPhone.Text),
+                        InsurancePolicy = long.Parse(pInsPolicy.Text),
+                        TypeOfPolicy = PolNameBox.Text,
+                        IDCompany = compId.ID
+                    };
+
+                    md.Entry(patients).State = System.Data.Entity.EntityState.Modified;
+                    md.SaveChanges();
+                }
+
+                MessageBox.Show("Данные успешно созранены в БД");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

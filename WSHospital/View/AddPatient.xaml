@@ -74,8 +74,8 @@
 
             <Rectangle Height="5" Fill="#FFBFBFBF"></Rectangle>
 
-            <Button Width="350" Height="27" Margin="0 10 0 0" Click="Button_Click" Visibility="Collapsed">добавить</Button>
-            <Button Width="350" Height="27" Margin="0 10 0 0" Visibility="Visible" Click="Button_Click_1">сохранить</Button>
+            <Button Width="350" Height="27" Margin="0 10 0 0" Click="Button_Click" Visibility="Collapsed" Name="add">добавить</Button>
+            <Button Width="350" Height="27" Margin="0 10 0 0" Visibility="Visible" Click="Button_Click_1" Name="save">сохранить</Button>
 
         </StackPanel>
         
