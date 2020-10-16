@@ -359,20 +359,22 @@ namespace WSHospital.View
 
                     if (filt.IsChecked == true)
                     {
+                        GetIfChange(FIO, FioSpic);
+
                         foreach (var items in fioPat)
                         {
-                            GetVisibilityListBox(FioSpic, Visibility.Hidden, FIO, new Thickness(1, 1, 1, 1));
-                        }
 
+                            if (FIO.Text != "" && FIO.Text.Equals(items.FIO.ToString()))
+                            {
+                                GetVisibilityListBox(FioSpic, Visibility.Hidden, FIO, new Thickness(1, 1, 1, 1));
+                            }
+
+                            FioSpic.Items.Add(items.FIO);
+                        }
                     }
                     else
                     {
-                        if (FIO.Text == "") GetVisibilityListBox(FioSpic, Visibility.Hidden, FIO, new Thickness(1, 1, 1, 1));
-
-                        else if (FIO.Text != "")
-                        {
-                            GetVisibilityListBox(FioSpic, Visibility.Visible, FIO, new Thickness(1, 1, 1, 0));
-                        }
+                        GetIfChange(FIO, FioSpic);
 
                         foreach (var item in fioPat)
                         {
@@ -421,6 +423,9 @@ namespace WSHospital.View
             {
                 using (ModelBD md = new ModelBD())
                 {
+                    DopServ.Items.Clear();
+                    NamServSpic.Items.Clear();
+
                     var NamServ = from s in md.SetServicee
                                   select new
                                   {
@@ -428,58 +433,91 @@ namespace WSHospital.View
                                       ServName = s.Name
                                   };
 
-                    DopServ.Items.Clear();
-                    foreach (var item in NamServ)
-                    {
-                        if (NameServ.Text.Equals(item.ServName))
-                        {
-                            var ServNam = from s in md.LabServices
-                                          where s.IDSetService == item.ID
-                                          select new
-                                          {
-                                              NameServ = s.Name,
-                                              ID = s.IDSetService
-                                          };
+                    
 
-                            foreach (var item1 in ServNam)
+                    if (filt.IsChecked == true)
+                    {
+                        GetIfChange(NameServ, NamServSpic);
+
+                        foreach (var items in NamServ)
+                        {
+
+                            if (NameServ.Text != "" && NameServ.Text.Equals(items.ServName.ToString()))
                             {
-                                DopServ.Items.Add(item1.NameServ);
+                                GetVisibilityListBox(NamServSpic, Visibility.Hidden, FIO, new Thickness(1, 1, 1, 1));
+                            }                          
+
+                            NamServSpic.Items.Add(items.ServName);
+                        }
+
+                        foreach (var item in NamServ)
+                        {
+                            if (NameServ.Text.Equals(item.ServName))
+                            {
+                                var ServNam = from s in md.LabServices
+                                              where s.IDSetService == item.ID
+                                              select new
+                                              {
+                                                  NameServ = s.Name,
+                                                  ID = s.IDSetService
+                                              };
+
+                                foreach (var item1 in ServNam)
+                                {
+                                    DopServ.Items.Add(item1.NameServ);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in NamServ)
+                        {
+                            if (NameServ.Text.Equals(item.ServName))
+                            {
+                                var ServNam = from s in md.LabServices
+                                              where s.IDSetService == item.ID
+                                              select new
+                                              {
+                                                  NameServ = s.Name,
+                                                  ID = s.IDSetService
+                                              };
+
+                                foreach (var item1 in ServNam)
+                                {
+                                    DopServ.Items.Add(item1.NameServ);
+                                }
+                            }
+                        }                     
+
+                        GetIfChange(NameServ, NamServSpic);
+
+                        foreach (var item in NamServ)
+                        {
+                            if (NameServ.Text == "")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                if (LevenshteinDistance(item.ServName, NameServ.Text) <= 3)
+                                {
+                                    NamServSpic.Items.Add(item.ServName);
+                                }
+                            }
+
+                        }
+
+                        foreach (var items in NamServ)
+                        {
+                            if (NameServ.Text != "" && NameServ.Text.Equals(items.ServName.ToString()))
+                            {
+                                GetVisibilityListBox(NamServSpic, Visibility.Hidden, NameServ, new Thickness(1, 1, 1, 1));
                             }
                         }
                     }
 
-                    NamServSpic.Items.Clear();
-
-                    if (NameServ.Text == "") GetVisibilityListBox(NamServSpic, Visibility.Hidden, NameServ, new Thickness(1, 1, 1, 1));
-
-                    else if (NameServ.Text != "")
-                    {
-                        GetVisibilityListBox(NamServSpic, Visibility.Visible, NameServ, new Thickness(1, 1, 1, 0));
-                    }
-
-                    foreach (var item in NamServ)
-                    {
-                        if (NameServ.Text == "")
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            if (LevenshteinDistance(item.ServName, NameServ.Text) <= 3)
-                            {
-                                NamServSpic.Items.Add(item.ServName);
-                            }
-                        }
-
-                    }
-
-                    foreach(var items in NamServ)
-                    {
-                        if (NameServ.Text != "" && NameServ.Text.Equals(items.ServName.ToString()))
-                        {
-                            GetVisibilityListBox(NamServSpic, Visibility.Hidden, NameServ, new Thickness(1, 1, 1, 1));
-                        }
-                    }
+                   
                 }
             }
             catch (Exception ex)
@@ -492,6 +530,15 @@ namespace WSHospital.View
         {
             GetSelectionChange(NamServSpic.SelectedItem, NameServ);
         }
+        //
+
+
+        public void GetIfChange(TextBox TextChange, ListBox list)
+        {
+            if (TextChange.Text == "") GetVisibilityListBox(list, Visibility.Hidden, TextChange, new Thickness(1, 1, 1, 1));
+            else if (TextChange.Text != "") GetVisibilityListBox(list, Visibility.Visible, TextChange, new Thickness(1, 1, 1, 1));
+        }
+
 
         private void DopServ_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
