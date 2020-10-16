@@ -5,15 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WSHospital"
         mc:Ignorable="d"
-        Title="UserWindow" Height="450" Width="600" MaxHeight="550" MaxWidth="750" MinHeight="450" MinWidth="600" 
+        Title="UserWindow" Height="450" Width="640"
         WindowStartupLocation="CenterScreen" BorderThickness="0" 
-        BorderBrush="#0001FFFF" Closed="Window_Closed">
+        BorderBrush="#0001FFFF" Closed="Window_Closed" ResizeMode="NoResize" WindowStyle="None">
     <Window.Resources>
 
+        <Style TargetType="Button" x:Key="ExitButton">
+
+            <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
+            <Setter Property="Width" Value="26"></Setter>
+            <Setter Property="Height" Value="26"></Setter>
+            <Setter Property="Background" Value="#FF9E4D4D"></Setter>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="1" BorderBrush="#FF6A8FB0" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF813939" />
+                    <Setter Property="BorderThickness" Value="2 2 1 1"></Setter>
+                </Trigger>
+
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#FF813939" />
+                    <Setter Property="BorderThickness" Value="2 2 1 1"></Setter>
+
+                    <Setter Property="Margin" Value="1 1 0 0"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--Background="Transparent" Width="455" Height="31" Margin="5"-->
+
+        <Style TargetType="Border" x:Key="BordUndButt">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="455"/>
+            <Setter Property="Height" Value="31"/>
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+
+        <!--button-->
         <Style TargetType="Button" x:Key="Butt">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
-            
-            <Setter Property="Background" Value="#FFC3C3C3"/>
+
+            <Setter Property="Background" Value="#FFAAC6E2"></Setter>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Height" Value="26"/>
             <Setter Property="Width" Value="450"/>
@@ -29,17 +71,63 @@
             </Setter>
 
             <Style.Triggers>
+
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Width" Duration="0:0:0.1" To="455"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Height" Duration="0:0:0.1" To="31"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Width" Duration="0:0:0.1" To="450"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Height" Duration="0:0:0.1" To="26"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+
+                <!--<EventTrigger RoutedEvent="Button.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <PointAnimation Storyboard.TargetName="bio"
+                                                        Storyboard.TargetProperty="LinearGradientBrush"
+                                                        From="0.8,1" To="0.5,0" Duration="0:0:6"
+                                                        AutoReverse="True" RepeatBehavior="Forever"></PointAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>-->
+
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="Gainsboro"></Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFAAC6E2" Offset="0.494"/>
+                                <GradientStop Color="#FFBAD8F5" Offset="1"/>
+                                <GradientStop Color="#FFBAD8F5" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
                 </Trigger>
 
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="Gainsboro"></Setter>
+                    <Setter Property="Background" Value="#FF8AA8C7"></Setter>
                     <Setter Property="Margin" Value="1 1 0 0"/>
                 </Trigger>
             </Style.Triggers>
             
         </Style>
+        <!--button-->
+        
 
         <Style TargetType="TextBlock">
             <Setter Property="Height" Value="30"></Setter>
@@ -47,6 +135,14 @@
             <Setter Property="FontSize" Value="15"></Setter>
             <Setter Property="TextAlignment" Value="Center"></Setter>
             <Setter Property="Padding" Value="3"></Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="FontWeight" Value="DemiBold"/>
+                </Trigger>
+            </Style.Triggers>
+            
         </Style>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="15"></Setter>
@@ -69,56 +165,86 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Border BorderBrush="#FFBEBFC7" BorderThickness="3" CornerRadius="10">
-            <Image Width="220" Margin="5" Name="Img"></Image>
-        </Border>
-
-        <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5 0 0 0">
-
-            <StackPanel VerticalAlignment="Center">
-                <Label>Name:</Label>
-                <Border BorderThickness="2" BorderBrush="#FF77AFD6" CornerRadius="10" Width="275">
-                    <TextBlock Name="NAME"></TextBlock>
-                </Border>
-
-                <Label>LastName:</Label>
-                <Border BorderThickness="2" BorderBrush="#FF77AFD6" CornerRadius="10" Width="275">
-                    <TextBlock Name="LNAME"></TextBlock>
-                </Border>
-
-                <Label>Age:</Label>
-                <Border BorderThickness="2" BorderBrush="#FF77AFD6" CornerRadius="10" Width="275">
-                    <TextBlock Name="AGE"></TextBlock>
-                </Border>
+        <StackPanel Grid.ColumnSpan="3" Grid.RowSpan="2">
+            <StackPanel Height="35">
+                <Grid Background="#FFD1D1D1" Height="35" MouseDown="Grid_MouseDown">
+                    <Label Width="150" VerticalContentAlignment="Center" HorizontalAlignment="Left">UserWundow</Label>
+                    <Border Width="26" Height="26" Background="Black" Margin="0 0 2 0" HorizontalAlignment="Right" VerticalAlignment="Center" Panel.ZIndex="1">
+                        <Button Style="{StaticResource ExitButton}" Name="ex" HorizontalAlignment="Right" Click="ex_Click"></Button>
+                    </Border>
+                </Grid>
             </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                <Border BorderBrush="#FFBEBFC7" BorderThickness="3" CornerRadius="10" Width="240" Height="210">
+                    <Image Name="Img">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Width" Value="220"/>
+                                <Setter Property="Height" Value="190"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Width" Value="225"/>
+                                        <Setter Property="Height" Value="195"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </Border>
+
+                <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="60 0 0 15">
+
+                    <StackPanel VerticalAlignment="Center">
+                        <Label>Name:</Label>
+                        <Border BorderThickness="2" BorderBrush="#FF77AFD6" CornerRadius="10" Width="275">
+                            <TextBlock Name="NAME"></TextBlock>
+                        </Border>
+
+                        <Label>LastName:</Label>
+                        <Border BorderThickness="2" BorderBrush="#FF77AFD6" CornerRadius="10" Width="275">
+                            <TextBlock Name="LNAME"></TextBlock>
+                        </Border>
+
+                        <Label>Age:</Label>
+                        <Border BorderThickness="2" BorderBrush="#FF77AFD6" CornerRadius="10" Width="275">
+                            <TextBlock Name="AGE"></TextBlock>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+          
+
+            <Border Grid.Row="1" Grid.ColumnSpan="3" BorderBrush="#FFBEBFC7" BorderThickness="3" CornerRadius="20">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFE9E9E9" Offset="0"/>
+                        <GradientStop Color="#FFD4D4D4" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Background="Transparent" Margin="0 4 0 0" HorizontalAlignment="Center">
+
+                    <Border Style="{StaticResource BordUndButt}" Name="bordBio">
+                        <Button Style="{StaticResource Butt}" x:Name="bio" Click="bio_Click">Принять биоматериал</Button>
+                    </Border>
+                    <Border Style="{StaticResource BordUndButt}" Name="bordOtch">
+                        <Button Style="{StaticResource Butt}" x:Name="otch">Сформировать отчеты</Button>
+                    </Border>
+                    <Border Style="{StaticResource BordUndButt}" Name="bordWork">
+                        <Button Style="{StaticResource Butt}" x:Name="work" Click="work_Click">Работа с анализатором</Button>
+                    </Border>
+                    <Border Style="{StaticResource BordUndButt}" Name="bordLookOtch">
+                        <Button Style="{StaticResource Butt}" x:Name="LookOtch" Click="LookOtch_Click">Посмотреть отчеты</Button>
+                    </Border>
+                    <Border Style="{StaticResource BordUndButt}" Name="bordCreateScg">
+                        <Button Style="{StaticResource Butt}" x:Name="CreateSch" Click="CreateSch_Click">Сформировать счет страховой компании</Button>
+                    </Border>
+                </StackPanel>
+            </Border>
+
         </StackPanel>
-
-        <Border Grid.Row="1" Grid.ColumnSpan="3" BorderBrush="#FFBEBFC7" BorderThickness="3" CornerRadius="20">
-            <Border.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFE9E9E9" Offset="0"/>
-                    <GradientStop Color="#FFD4D4D4" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
-            
-            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Background="Transparent" Margin="0 12 0 0">
-
-                <Border Background="Black" Width="450" Height="26" Margin="5" Name="bordBio">
-                    <Button Style="{StaticResource Butt}" x:Name="bio" Click="bio_Click">Принять биоматериал</Button>
-                </Border>
-                <Border Background="Black" Width="450" Height="26" Margin="5" Name="bordOtch">
-                    <Button Style="{StaticResource Butt}" x:Name="otch">Сформировать отчеты</Button>
-                </Border>
-                <Border Background="Black" Width="450" Height="26" Margin="5" Name="bordWork">
-                    <Button Style="{StaticResource Butt}" x:Name="work" Click="work_Click">Работа с анализатором</Button>
-                </Border>
-                <Border Background="Black" Width="450" Height="26" Margin="5" Name="bordLookOtch">
-                    <Button Style="{StaticResource Butt}" x:Name="LookOtch" Click="LookOtch_Click">Посмотреть отчеты</Button>
-                </Border>
-                <Border Background="Black" Width="450" Height="26" Margin="5" Name="bordCreateScg">
-                    <Button Style="{StaticResource Butt}" x:Name="CreateSch" Click="CreateSch_Click">Сформировать счет страховой компании</Button>
-                </Border>
-            </StackPanel>
-        </Border>
     </Grid>
 </Window>

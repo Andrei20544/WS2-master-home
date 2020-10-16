@@ -102,7 +102,12 @@ namespace WSHospital.View
                 CompNameBox.Text = patient.Company.Name;
 
                 Shtrih.Text = shtr;
+
+                md.Entry(patient).State = System.Data.Entity.EntityState.Modified;
+                md.SaveChanges();
             }
+
+
         }
 
         public Patients pat;

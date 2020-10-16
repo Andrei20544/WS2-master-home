@@ -126,8 +126,8 @@
         <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="3">
 
             <Grid Width="1100" Height="30" Background="#FF022D3C" MouseDown="Grid_MouseDown">
-                <Border Width="26" Height="26" Background="Black" Margin="0 0 2 0" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Button Style="{StaticResource ExitButton}" Click="Button_Click_5" Name="ex" ></Button>
+                <Border Width="26" Height="26" Background="Black" Margin="0 0 2 0" HorizontalAlignment="Right" VerticalAlignment="Center" Panel.ZIndex="1">
+                    <Button Style="{StaticResource ExitButton}" Click="Button_Click_5" Name="ex"></Button>
                 </Border>
                 <StackPanel Orientation="Horizontal">
                     <Image Width="30" MouseDown="Image_MouseDown">
@@ -157,10 +157,12 @@
                         <Label>Введите штрих код</Label>
                         <StackPanel Orientation="Horizontal" KeyDown="StackPanel_KeyDown" Height="35">
                             <TextBox Width="400" Height="35" Name="Shtr" SelectionChanged="Shtr_SelectionChanged" VerticalContentAlignment="Center" FontSize="17" MaxLength="13" Background="#FF8ABAD3" BorderThickness="0" TextChanged="Shtr_TextChanged"/>
-                            
-                            <Border Background="Black" Width="150" Height="35" Margin="10 0 0 0" BorderThickness="0">
-                                <Button Style="{StaticResource BordKey}" Width="150" Height="35" Click="Button_Click_2" Name="gen">Сгенерировать</Button>
-                            </Border>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="Black" Width="150" Height="35" Margin="10 0 0 0" BorderThickness="1 0 1 0">
+                                    <Button Style="{StaticResource BordKey}" Width="150" Height="35" Click="Button_Click_2" Name="gen">Сгенерировать</Button>
+                                </Border>
+                            </StackPanel>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0 20 0 0" Panel.ZIndex="5">
