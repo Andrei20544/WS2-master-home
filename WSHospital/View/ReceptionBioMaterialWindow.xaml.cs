@@ -350,43 +350,56 @@ namespace WSHospital.View
         private void FIO_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
-            {
+            {              
                 using (ModelBD md = new ModelBD())
                 {
-                    var fioPat = from p in md.Patients select p;
-
                     FioSpic.Items.Clear();
 
-                    if (FIO.Text == "") GetVisibilityListBox(FioSpic, Visibility.Hidden, FIO, new Thickness(1, 1, 1, 1));
+                    var fioPat = from p in md.Patients select p;
 
-                    else if (FIO.Text != "") 
+                    if (filt.IsChecked == true)
                     {
-                        GetVisibilityListBox(FioSpic, Visibility.Visible, FIO, new Thickness(1, 1, 1, 0));
-                    }
-
-                    foreach (var item in fioPat)
-                    {
-                        if (FIO.Text == "")
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            if (LevenshteinDistance(item.FIO.Split(' ')[0], FIO.Text) <= 3)
-                            {
-                                FioSpic.Items.Add(item.FIO);
-                            }
-                        }
-                       
-                    }
-
-                    foreach(var items in fioPat)
-                    {
-                        if (FIO.Text != "" && FIO.Text.Equals(items.FIO.ToString()))
+                        foreach (var items in fioPat)
                         {
                             GetVisibilityListBox(FioSpic, Visibility.Hidden, FIO, new Thickness(1, 1, 1, 1));
                         }
+
                     }
+                    else
+                    {
+                        if (FIO.Text == "") GetVisibilityListBox(FioSpic, Visibility.Hidden, FIO, new Thickness(1, 1, 1, 1));
+
+                        else if (FIO.Text != "")
+                        {
+                            GetVisibilityListBox(FioSpic, Visibility.Visible, FIO, new Thickness(1, 1, 1, 0));
+                        }
+
+                        foreach (var item in fioPat)
+                        {
+                            if (FIO.Text == "")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                if (LevenshteinDistance(item.FIO.Split(' ')[0], FIO.Text) <= 3)
+                                {
+                                    FioSpic.Items.Add(item.FIO);
+                                }
+                            }
+
+                        }
+
+                        foreach (var items in fioPat)
+                        {
+                            if (FIO.Text != "" && FIO.Text.Equals(items.FIO.ToString()))
+                            {
+                                GetVisibilityListBox(FioSpic, Visibility.Hidden, FIO, new Thickness(1, 1, 1, 1));
+                            }
+                        }
+                    }
+
+                                    
                 }
             }
             catch (Exception ex)

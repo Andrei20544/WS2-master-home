@@ -143,7 +143,9 @@
                         </Image.Style>
                     </Image>
                     <Label FontSize="15" HorizontalAlignment="Left" Width="1050">Прием биоматериала</Label>
+                    
                 </StackPanel>
+                <CheckBox Margin="940 0 0 0" VerticalAlignment="Center" Panel.ZIndex="1" Name="filt">Сбросить фильтр</CheckBox>
             </Grid>
 
             <Border BorderBrush="#FF8C9AA6" BorderThickness="0" CornerRadius="15" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalAlignment="Center">
@@ -210,12 +212,10 @@
                             <Label HorizontalAlignment="Center" Margin="0 0 325 0">ФИО</Label>
 
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-
                                 <TextBox Width="270" Height="35" Background="#FF8ABAD3" Name="FIO" FontSize="16" VerticalContentAlignment="Center" TextChanged="FIO_TextChanged"/>
                                 <Border Width="90" Height="35" Margin="5 0 0 0" BorderThickness="0">
                                     <Button Style="{StaticResource BordKey}" Height="35" Width="90" Click="Button_Click">Изменить</Button>
                                 </Border>
-
                             </StackPanel>
 
                             <ListBox Width="365" Visibility="Hidden" Height="120" Background="#FFF3F3F3" Name="FioSpic" Panel.ZIndex="5" MaxHeight="120" BorderThickness="1 1 1 1" SelectionChanged="FioSpic_SelectionChanged"></ListBox>
