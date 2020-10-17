@@ -77,7 +77,7 @@ namespace WSHospital.View
 
                     MainWindow main = new MainWindow();
                     main.LOG.Text = Log.Text;
-                    main.PASS.Password = Pass.Password;
+                    main.PASS.Text = Pass.Password;
 
                     this.Close();
                 }

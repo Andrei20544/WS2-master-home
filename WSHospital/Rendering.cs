@@ -9,6 +9,7 @@ namespace WSHospital
     [Table("Rendering")]
     public partial class Rendering
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         public int IdService { get; set; }
