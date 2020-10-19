@@ -128,7 +128,7 @@
                                 <!--<ColorAnimation Storyboard.TargetProperty="Background.Color"
                                         To="#FF215280" Duration="0:0:0.3" />-->
 
-                                <ThicknessAnimation To="0" Duration="0:0:0.3" 
+                                <ThicknessAnimation To="0" Duration="0:0:0.15" 
                                                     Storyboard.TargetProperty = "Margin"/>
 
 
@@ -149,7 +149,7 @@
                                 <!--<ColorAnimation Storyboard.TargetProperty="Background.Color"
                                         To="#FF1D4C76" Duration="0:0:0.3" />-->
 
-                                <ThicknessAnimation To="50 0 0 0" Duration="0:0:0.3" 
+                                <ThicknessAnimation To="50 0 0 0" Duration="0:0:0.15" 
                                                     Storyboard.TargetProperty = "Margin"/>
 
                                 <ColorAnimation Storyboard.TargetProperty="Background.GradientStops[1].Color"

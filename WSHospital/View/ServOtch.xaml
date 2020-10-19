@@ -43,7 +43,8 @@
                         <Label Style="{StaticResource Lab}" Margin="15 0 0 0">до:</Label>
                         <DatePicker Width="250" Height="35" Margin="5 0 0 0" FontSize="15" Name="DatLast"></DatePicker>
 
-                        <Button Margin="10 0 0 0" Click="Button_Click">просмотреть</Button>
+                        <Button Margin="10 0 0 0" Click="Button_Click">просмотреть график</Button>
+                        <Button Margin="10 0 0 0" Click="Button_Click_1">просмотреть таблицу</Button>
                     </StackPanel>
                 </StackPanel>
 
@@ -70,6 +71,8 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
                     <Label Content="Результат каждого исследования в день: " FontSize="18" VerticalContentAlignment="Center" VerticalAlignment="Top" ></Label>
                     <TextBlock Width="250" Name="KRes" FontSize="25">ds</TextBlock>
+
+                    <Button Click="Button_Click_2">Сформировать отчет</Button>
                 </StackPanel>
 
                 <DataGrid x:Name="grid" AutoGenerateColumns="False" FontSize="16" DataContext="{Binding GetTable}" Visibility="Collapsed">
@@ -82,10 +85,15 @@
                 </DataGrid>
 
                 <StackPanel>
-                    <Canvas Width="1000" Name="Canv">
-                        <StackPanel Orientation="Horizontal" Name="CanvChild">
-                            
-                        </StackPanel>
+                    <Canvas HorizontalAlignment="Left" Margin="50 0 0 0" Name="Canv" Background="Gainsboro" Height="300">
+                        <Line Stroke="Black" StrokeThickness="3" X1="0" Y1="280"></Line>
+                        <Line Stroke="Black" StrokeThickness="3" X1="0" X2="280" Y1="280" Y2="280"></Line>
+
+                        <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Name="CanvChild" Background="Gainsboro">
+                            <ScrollViewer x:Name="scroll">
+                                
+                            </ScrollViewer>
+                        </StackPanel>-->
                     </Canvas>
                 </StackPanel>
 
