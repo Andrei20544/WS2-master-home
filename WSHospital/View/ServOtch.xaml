@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WSHospital.View"
         mc:Ignorable="d"
         Title="ServOtch" Height="720" Width="1100">
+    
 
     <Window.Resources>
         <Style TargetType="Label" x:Key="Lab">
@@ -55,7 +56,7 @@
                     <Label Content="Кол-во пациентов: " FontSize="18" VerticalContentAlignment="Center" Name="two"></Label>
                     <TextBlock Width="250" Height="35" FontSize="25" Name="KPat">ds</TextBlock>
                 </StackPanel>
-                
+
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
                     <Label Content="среднее кол-во пациентов в день: " FontSize="18" VerticalContentAlignment="Center" Name="thr"></Label>
                     <TextBlock Width="250" Height="35" FontSize="25" Name="AvgKPatDay">ds</TextBlock>
@@ -71,7 +72,7 @@
                     <TextBlock Width="250" Name="KRes" FontSize="25">ds</TextBlock>
                 </StackPanel>
 
-                <DataGrid x:Name="grid" AutoGenerateColumns="False" FontSize="16" DataContext="{Binding GetTable}">
+                <DataGrid x:Name="grid" AutoGenerateColumns="False" FontSize="16" DataContext="{Binding GetTable}" Visibility="Collapsed">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Кол-во оказанных услуг" Width="220" Binding="{Binding Kserv}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Кол-во пациентов" Width="150" Binding="{Binding Kpat}"></DataGridTextColumn>
@@ -79,7 +80,15 @@
                         <DataGridTextColumn Header="Перечень оказанных услуг" Width="380" Binding="{Binding Sserv}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                
+
+                <StackPanel>
+                    <Canvas Width="1000" Name="Canv">
+                        <StackPanel Orientation="Horizontal" Name="CanvChild">
+                            
+                        </StackPanel>
+                    </Canvas>
+                </StackPanel>
+
             </StackPanel>
         </Grid>
 

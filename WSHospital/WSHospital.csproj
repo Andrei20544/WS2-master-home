@@ -208,6 +208,13 @@
   <ItemGroup>
     <Resource Include="Assets\backWhite.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\ExitButt.png" />
+    <Resource Include="Assets\LoginButt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\AddButt.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

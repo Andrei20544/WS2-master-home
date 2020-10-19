@@ -66,6 +66,18 @@ namespace WSHospital.View
                                    r.Period
                                };
 
+
+                var SServ2 = from r in md.Rendering
+                             join ls in md.LabServices on r.IdService equals ls.ID
+                             join o in md.Orderr on ls.ID equals o.IDService
+                             join p in md.Patients on o.IDPatient equals p.ID
+                             select new
+                             {
+                                 r.Period,
+                                 p.FIO,
+                                 ls.Name
+                             };
+
                 int count = 0;
 
                 foreach (var item in dat)
@@ -78,7 +90,7 @@ namespace WSHospital.View
                 KServ.Text = count.ToString();
                 count = 0;
 
-                foreach (var item in SServ.Distinct())
+                foreach (var item in SServ)
                 {
                     if (DateTime.Parse(item.Period) > DatFirst.SelectedDate.Value && DateTime.Parse(item.Period) < DatLast.SelectedDate.Value)
                     {
@@ -88,7 +100,7 @@ namespace WSHospital.View
                 KSserv.Text = count.ToString();
                 count = 0;
 
-                foreach (var item in CountPat.Distinct())
+                foreach (var item in CountPat)
                 {
                     if (DateTime.Parse(item.Period) > DatFirst.SelectedDate.Value && DateTime.Parse(item.Period) < DatLast.SelectedDate.Value)
                     {
@@ -106,7 +118,18 @@ namespace WSHospital.View
                 };
 
                 grid.Items.Add(get);
-                
+
+                int con = int.Parse(KServ.Text) + int.Parse(KSserv.Text) + int.Parse(KPat.Text);
+
+                Rectangle rectangle_1 = new Rectangle();
+                Label label_1 = new Label();
+
+
+                for (int i = 0; i <= con; i++)
+                {
+
+                }
+
             }
         }
     }
