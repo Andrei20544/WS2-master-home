@@ -261,7 +261,7 @@ namespace WSHospital.View
 
                     label = new Label();
                     label.Content = str[i];
-                    label.Margin = new Thickness(50 + i * 32, (285 + i * 10), 0, 0);
+                    label.Margin = new Thickness(50 + i * 32, 305 - i * 10, 10, 0);
 
                     Canv.Children.Add(label);
 
