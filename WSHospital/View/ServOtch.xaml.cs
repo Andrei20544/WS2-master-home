@@ -58,6 +58,7 @@ namespace WSHospital.View
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             grid.Items.Clear();
+
             chart.Series.Clear();
             chart.ChartAreas.Clear();
 
@@ -110,24 +111,53 @@ namespace WSHospital.View
                     }
                 }
 
-                KPat.Text = count.ToString();
-
-                GetTAble get = new GetTAble
-                {
-                    Kserv = int.Parse(KServ.Text),
-                    Sserv = int.Parse(KSserv.Text),
-                    Kpat = int.Parse(KPat.Text)
-                };
-
-                grid.Items.Add(get);
+                KPat.Text = count.ToString();               
 
                 count = 0;
+                int count_2 = 0;
 
                 var dat_1 = from r in md.Rendering
                             select new
                             {
                                 datt = r.Period
                             };
+
+                foreach(var item in dat_1)
+                {
+                    if (DateTime.Parse(item.datt).Day > DatFirst.SelectedDate.Value.Day && DateTime.Parse(item.datt).Day < DatLast.SelectedDate.Value.Day)
+                    {
+                        foreach (var item1 in CountPat)
+                        {
+                            DateTime date = DateTime.Parse(item1.Period);
+                            if (date.Day.Equals(DateTime.Parse(item.datt).Day))
+                            {
+                                count++;
+                            }
+                        }
+
+                        foreach (var item1 in SServ)
+                        {
+                            DateTime date = DateTime.Parse(item1.Period);
+                            if (date.Day.Equals(DateTime.Parse(item.datt).Day))
+                            {
+                                count_2++;
+                            }
+                        }
+
+                        GetTAble get = new GetTAble
+                        {
+                            Kserv = count_2,
+                            Sserv = count_2,
+                            Kpat = count
+                        };
+
+                        grid.Items.Add(get);
+
+                        count = 0;
+                        count_2 = 0;
+                    }
+                }
+               
 
                 int con = int.Parse(KServ.Text) + int.Parse(KSserv.Text) + int.Parse(KPat.Text);
 
@@ -151,7 +181,7 @@ namespace WSHospital.View
 
             foreach (var item in dat_1)
             {
-                if (DateTime.Parse(item.datt).Day > DatFirst.SelectedDate.Value.Day && DateTime.Parse(item.datt).Day < DatLast.SelectedDate.Value.Day)
+                if (DateTime.Parse(item.datt).Day >= DatFirst.SelectedDate.Value.Day && DateTime.Parse(item.datt).Day <= DatLast.SelectedDate.Value.Day)
                 {
                     foreach (var item1 in CountOther)
                     {
