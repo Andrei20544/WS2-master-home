@@ -2,10 +2,12 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"   
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:dvc="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         xmlns:local="clr-namespace:WSHospital.View"
         mc:Ignorable="d"
-        Title="ServOtch" Height="720" Width="1100">
+        Title="ServOtch" Height="720" Width="1100" Loaded="Window_Loaded">
     
 
     <Window.Resources>
@@ -85,16 +87,11 @@
                 </DataGrid>
 
                 <StackPanel>
-                    <Canvas HorizontalAlignment="Left" Margin="50 0 0 0" Name="Canv" Background="Gainsboro" Height="300">
-                        <Line Stroke="Black" StrokeThickness="3" X1="0" Y1="280"></Line>
-                        <Line Stroke="Black" StrokeThickness="3" X1="0" X2="280" Y1="280" Y2="280"></Line>
 
-                        <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Name="CanvChild" Background="Gainsboro">
-                            <ScrollViewer x:Name="scroll">
-                                
-                            </ScrollViewer>
-                        </StackPanel>-->
-                    </Canvas>
+                    <WindowsFormsHost Name="tab">
+                        <dvc:Chart x:Name="chart"/>
+                    </WindowsFormsHost>
+
                 </StackPanel>
 
             </StackPanel>

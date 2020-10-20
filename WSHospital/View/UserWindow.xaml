@@ -94,19 +94,6 @@
                     </EventTrigger.Actions>
                 </EventTrigger>
 
-                <!--<EventTrigger RoutedEvent="Button.MouseEnter">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <PointAnimation Storyboard.TargetName="bio"
-                                                        Storyboard.TargetProperty="LinearGradientBrush"
-                                                        From="0.8,1" To="0.5,0" Duration="0:0:6"
-                                                        AutoReverse="True" RepeatBehavior="Forever"></PointAnimation>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger.Actions>
-                </EventTrigger>-->
-
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background">
                         <Setter.Value>
