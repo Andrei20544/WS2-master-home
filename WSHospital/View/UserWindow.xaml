@@ -20,7 +20,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border BorderThickness="1" BorderBrush="#FF6A8FB0" Background="{TemplateBinding Background}">
+                        <Border BorderThickness="1 1 0 0" BorderBrush="#FF6A8FB0" Background="{TemplateBinding Background}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
                         </Border>
                     </ControlTemplate>
@@ -156,8 +156,8 @@
             <StackPanel Height="35">
                 <Grid Background="#FFD1D1D1" Height="35" MouseDown="Grid_MouseDown">
                     <Label Width="150" VerticalContentAlignment="Center" HorizontalAlignment="Left">UserWundow</Label>
-                    <Border Width="26" Height="26" Background="Black" Margin="0 0 2 0" HorizontalAlignment="Right" VerticalAlignment="Center" Panel.ZIndex="1">
-                        <Button Style="{StaticResource ExitButton}" Name="ex" HorizontalAlignment="Right" Click="ex_Click"></Button>
+                    <Border Width="22" Height="22" Background="Black" Margin="0 0 5 0" HorizontalAlignment="Right" VerticalAlignment="Center" Panel.ZIndex="1">
+                        <Button Style="{StaticResource ExitButton}" Name="ex" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ex_Click"></Button>
                     </Border>
                 </Grid>
             </StackPanel>

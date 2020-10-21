@@ -321,7 +321,7 @@
 
 
                 <StackPanel Margin="0 35 0 10">
-                    <Label Style="{StaticResource LabStyle}">Login</Label>
+                    <Label Style="{StaticResource LabStyle}" Content="Login"></Label>
                     <TextBox Style="{StaticResource TetxBoxStyle}" Name="LOG">a.black@milkwoodproductions.com</TextBox>
                 </StackPanel>
 
@@ -342,7 +342,7 @@
                             </StackPanel>
                         </Button>
                     </Border>
-                    <Border Background="Transparent" Width="555" Height="40" Margin="0 5 0 0"
+                    <Border Background="Transparent" Width="555" Height="40" Margin="0 15 0 0"
                             BorderThickness="0 0 1 1" BorderBrush="AliceBlue">
                         <Button Style="{StaticResource ButtLog}" Click="Button_Click_1">
                             <StackPanel Orientation="Horizontal" Width="520">
@@ -358,9 +358,11 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="2" Background="#FF131F2C">
+        <Border Grid.Row="2" BorderThickness="0 2 0 0" BorderBrush="#FF031423">
+            <Grid Grid.Row="2" Background="#FF131F2C">
 
-        </Grid>
+            </Grid>
+        </Border>
 
     </Grid>
 </Window>
