@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections;
 using System.IO;
 using System.Linq;
@@ -64,6 +65,7 @@ namespace WSHospital.View
                            };
 
                 var PatNam = md.Patients.ToList();
+                
 
                 string serv = "";
                 foreach (var item in PatNam)
@@ -117,30 +119,31 @@ namespace WSHospital.View
         {
             print.PrintVisual(otch, "");
         }
-
+        public SaveFileDialog saveFile = new SaveFileDialog();
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string pathCsvFile = $"C:\\Users\\{Environment.UserName}.KBK\\Documents\\text.csv";
+            saveFile.Filter = "Text files(*.csv)|*.csv|All files(*.*)|*.*";
 
-            string path = "C:\\Users\\208-it-09\\text.csv";
-
-
-            using (StreamWriter sw = new StreamWriter(pathCsvFile, true, System.Text.Encoding.Default))
+            if (saveFile.ShowDialog() == true)
             {
-                sw.WriteLine("Компания: " + CompName.Content + "\n" +
-                              "ФИО пациентов с оказанными услугами: " + ListPat.ItemsSource.ToString() + "\n" +
-                              "Стоимость услуг по каждому пациенту: " + ListPatSum.ItemsSource.ToString() + "\n" +
-                              "Итоговая стоимость: " + It.Content + "\n" +
-                              "Период оплаты: " + Period.Content);
-            }
+                string pathCsvFile = saveFile.FileName;
 
-            //for (int i = 0; i <= list1.Count; i++)
-            //{
-            //    var first = list1[i];
-            //    var line = string.Format($"{first}");
-            //    w.WriteLine(line);
-            //    w.Flush();
-            //}
+                string allItemsPat = String.Join(";\n", ListPat.Items.OfType<string>());
+                string allItemsSum = String.Join("\n;", ListPatSum.Items.OfType<string>());
+
+
+                using (StreamWriter sw = File.AppendText(pathCsvFile))
+                {
+                    sw.WriteLine($"Компания; {CompName.Content}\n" +
+                        $"ФИО пациентов с оказанными услугами; {allItemsPat}\n" +
+                        $"Стоимость услуг по каждому пациенту; {allItemsSum}\n" +
+                        $"Итоговая стоимость; {It.Content}\n" +
+                        $"Период оплаты; {Period.Content}");
+                    sw.Close();
+                }
+
+                MessageBox.Show($"Файл CSV сохранен в папке: {pathCsvFile}");
+            }
         }
 
         private void CompName_SizeChanged_1(object sender, SizeChangedEventArgs e)

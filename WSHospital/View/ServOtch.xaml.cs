@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Collections;
 
 namespace WSHospital.View
 {
@@ -23,6 +24,7 @@ namespace WSHospital.View
             public int Kpat { get; set; }
             public int AvgDay { get; set; }
             public int Sserv { get; set; }
+            public string DayAndMonth { get; set; }
         }
 
         public DateTime dat;
@@ -81,54 +83,26 @@ namespace WSHospital.View
                                    r.Period
                                };
 
-                int count = 0;
-
-                foreach (var item in dat)
-                {
-                    if (DateTime.Parse(item.Period) > DatFirst.SelectedDate.Value && DateTime.Parse(item.Period) < DatLast.SelectedDate.Value)
-                    {
-                        count++;
-                    }
-                }
-                KServ.Text = count.ToString();
-                count = 0;
-
-                foreach (var item in SServ)
-                {
-                    if (DateTime.Parse(item.Period) > DatFirst.SelectedDate.Value && DateTime.Parse(item.Period) < DatLast.SelectedDate.Value)
-                    {
-                        count++;
-                    }
-                }
-                KSserv.Text = count.ToString();
-                count = 0;
-
-                foreach (var item in CountPat)
-                {
-                    if (DateTime.Parse(item.Period) > DatFirst.SelectedDate.Value && DateTime.Parse(item.Period) < DatLast.SelectedDate.Value)
-                    {
-                        count++;
-                    }
-                }
-
-                KPat.Text = count.ToString();               
-
-                count = 0;
-                int count_2 = 0;
-
                 var dat_1 = from r in md.Rendering
                             select new
                             {
                                 datt = r.Period
                             };
 
-                foreach(var item in dat_1)
+                int count = 0;
+                int count_2 = 0;
+
+                int countPat = 0;
+                int countServ = 0;
+
+                foreach (var item in dat_1.Distinct())
                 {
-                    if (DateTime.Parse(item.datt).Day > DatFirst.SelectedDate.Value.Day && DateTime.Parse(item.datt).Day < DatLast.SelectedDate.Value.Day)
+                    if (DateTime.Parse(item.datt).Day >= DatFirst.SelectedDate.Value.Day && DateTime.Parse(item.datt).Day <= DatLast.SelectedDate.Value.Day)
                     {
                         foreach (var item1 in CountPat)
                         {
                             DateTime date = DateTime.Parse(item1.Period);
+
                             if (date.Day.Equals(DateTime.Parse(item.datt).Day))
                             {
                                 count++;
@@ -148,27 +122,35 @@ namespace WSHospital.View
                         {
                             Kserv = count_2,
                             Sserv = count_2,
-                            Kpat = count
+                            Kpat = count,
+                            DayAndMonth = "Day: " + DateTime.Parse(item.datt).Day + $" - Month: {DateTime.Parse(item.datt).Month}"
                         };
 
                         grid.Items.Add(get);
+
+                        countPat += count;
+                        countServ += count_2;
 
                         count = 0;
                         count_2 = 0;
                     }
                 }
-               
+
+                KPat.Text = countPat.ToString();
+                KServ.Text = countServ.ToString();
+                KSserv.Text = countServ.ToString();
+
+
 
                 int con = int.Parse(KServ.Text) + int.Parse(KSserv.Text) + int.Parse(KPat.Text);
 
                 string[] str = new string[3] { "Кол-во оказанных услуг", "Кол-во пациентов", "Перечень оказанных услуг" };
-                int[] con_1 = new int[3] { int.Parse(KServ.Text), int.Parse(KPat.Text), int.Parse(KSserv.Text) };
 
                 chart.ChartAreas.Add(new ChartArea("Default"));
 
-                GenerateGraph("1", dat_1, CountPat, count);
-                GenerateGraph("2", dat_1, SServ, count);
-                GenerateGraph("3", dat_1, SServ, count);
+                GenerateGraph(str[1], dat_1, CountPat, count);
+                GenerateGraph(str[0], dat_1, SServ, count);
+                GenerateGraph(str[2], dat_1, SServ, count);
 
             }
         }
@@ -177,10 +159,13 @@ namespace WSHospital.View
         {
             count = 0;
 
+            ArrayList list = new ArrayList();
+
             chart.Series.Add(new Series(NameSeries));
 
             foreach (var item in dat_1)
             {
+
                 if (DateTime.Parse(item.datt).Day >= DatFirst.SelectedDate.Value.Day && DateTime.Parse(item.datt).Day <= DatLast.SelectedDate.Value.Day)
                 {
                     foreach (var item1 in CountOther)
@@ -192,14 +177,17 @@ namespace WSHospital.View
                         }
                     }
 
-                    chart.Series[NameSeries].ChartArea = "Default";
-                    chart.Series[NameSeries].ChartType = SeriesChartType.Column;
+                    if (!list.Contains(DateTime.Parse(item.datt).Day))
+                    {
+                        chart.Series[NameSeries].ChartArea = "Default";
+                        chart.Series[NameSeries].ChartType = SeriesChartType.Column;
 
-                    chart.Series[NameSeries].Points.AddXY("Day: " + DateTime.Parse(item.datt).Day + $" - Month: {DateTime.Parse(item.datt).Month}", count);
+                        chart.Series[NameSeries].Points.AddXY("Day: " + DateTime.Parse(item.datt).Day + $" - Month: {DateTime.Parse(item.datt).Month}", count);
 
+                        list.Add(DateTime.Parse(item.datt).Day);
+                    }                   
                     count = 0;
-                }
-
+                }         
             }
         }
 

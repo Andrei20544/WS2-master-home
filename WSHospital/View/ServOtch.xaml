@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:WSHospital.View"
         mc:Ignorable="d"
         Title="ServOtch" Height="720" Width="1100" Loaded="Window_Loaded">
-    
+
 
     <Window.Resources>
         <Style TargetType="Label" x:Key="Lab">
@@ -20,11 +20,12 @@
         <Style TargetType="Label">
             <Setter Property="Width" Value="350"/>
         </Style>
-        
+
     </Window.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -33,9 +34,9 @@
             <RowDefinition Height="607*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label FontSize="20" HorizontalAlignment="Center" FontWeight="DemiBold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2">Отчет по услугам</Label>
+        <Label FontSize="20" HorizontalAlignment="Center" FontWeight="DemiBold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="3">Отчет по услугам</Label>
 
-        <Grid Grid.Row="1" Margin="15 0 15 0" Grid.ColumnSpan="2">
+        <Grid Grid.Row="1" Margin="15 0 15 0" Grid.ColumnSpan="3">
             <StackPanel>
 
                 <StackPanel Margin="0 0 0 25">
@@ -51,31 +52,35 @@
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
-                    <Label Content="Кол-во оказанных услуг: " FontSize="18" VerticalContentAlignment="Center" Name="one"></Label>
-                    <TextBlock Width="250" Height="35" FontSize="25" Name="KServ">ds</TextBlock>
-                </StackPanel>
+                <StackPanel Grid.Column="1">
 
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
-                    <Label Content="Кол-во пациентов: " FontSize="18" VerticalContentAlignment="Center" Name="two"></Label>
-                    <TextBlock Width="250" Height="35" FontSize="25" Name="KPat">ds</TextBlock>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
+                        <Label Content="Кол-во оказанных услуг: " FontSize="18" VerticalContentAlignment="Center" Name="one"></Label>
+                        <TextBlock Width="250" Height="35" FontSize="25" Name="KServ">ds</TextBlock>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
-                    <Label Content="среднее кол-во пациентов в день: " FontSize="18" VerticalContentAlignment="Center" Name="thr"></Label>
-                    <TextBlock Width="250" Height="35" FontSize="25" Name="AvgKPatDay">ds</TextBlock>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
+                        <Label Content="Кол-во пациентов: " FontSize="18" VerticalContentAlignment="Center" Name="two"></Label>
+                        <TextBlock Width="250" Height="35" FontSize="25" Name="KPat">ds</TextBlock>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
-                    <Label Content="Перечень оказанных услуг: " FontSize="18" VerticalContentAlignment="Center" VerticalAlignment="Top" Name="fr"></Label>
-                    <TextBlock Width="250" Name="KSserv" FontSize="25">ds</TextBlock>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
+                        <Label Content="среднее кол-во пациентов в день: " FontSize="18" VerticalContentAlignment="Center" Name="thr"></Label>
+                        <TextBlock Width="250" Height="35" FontSize="25" Name="AvgKPatDay">ds</TextBlock>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <Label Content="Результат каждого исследования в день: " FontSize="18" VerticalContentAlignment="Center" VerticalAlignment="Top" ></Label>
-                    <TextBlock Width="250" Name="KRes" FontSize="25">ds</TextBlock>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 0 0 10">
+                        <Label Content="Перечень оказанных услуг: " FontSize="18" VerticalContentAlignment="Center" VerticalAlignment="Top" Name="fr"></Label>
+                        <TextBlock Width="250" Name="KSserv" FontSize="25">ds</TextBlock>
+                    </StackPanel>
 
-                    <Button Click="Button_Click_2">Сформировать отчет</Button>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <Label Content="Результат каждого исследования в день: " FontSize="18" VerticalContentAlignment="Center" VerticalAlignment="Top" ></Label>
+                        <TextBlock Width="250" Name="KRes" FontSize="25">ds</TextBlock>
+
+                        <Button Click="Button_Click_2">Сформировать отчет</Button>
+                    </StackPanel>
+
                 </StackPanel>
 
                 <DataGrid x:Name="grid" AutoGenerateColumns="False" FontSize="16" DataContext="{Binding GetTable}" Visibility="Collapsed">
@@ -83,14 +88,22 @@
                         <DataGridTextColumn Header="Кол-во оказанных услуг" Width="220" Binding="{Binding Kserv}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Кол-во пациентов" Width="150" Binding="{Binding Kpat}"></DataGridTextColumn>
                         <DataGridTextColumn Header="среднее кол-во пациентов в день" Width="290"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Перечень оказанных услуг" Width="380" Binding="{Binding Sserv}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Перечень оказанных услуг" Width="220" Binding="{Binding Sserv}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="День и месяц" Width="150" Binding="{Binding DayAndMonth}"/>
                     </DataGrid.Columns>
                 </DataGrid>
 
                 <StackPanel>
 
                     <WindowsFormsHost Name="tab">
-                        <dvc:Chart x:Name="chart"/>
+                        <dvc:Chart x:Name="chart">
+                            <dvc:Chart.Legends>
+                                <dvc:Legend Name="Legend"/>
+                            </dvc:Chart.Legends>
+                            <dvc:Chart.ChartAreas>
+                                <dvc:ChartArea Name="Default"/>
+                            </dvc:Chart.ChartAreas>
+                        </dvc:Chart>
                     </WindowsFormsHost>
 
                 </StackPanel>
