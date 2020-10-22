@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WSHospital.View;
 using System.IO;
+using System.Threading;
 
 namespace WSHospital
 {
@@ -26,7 +27,6 @@ namespace WSHospital
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             if (LOG.Text.Length == 0 && PASS.Text.Length == 0)
             {
                 MessageBox.Show("Введите логин и пароль");
@@ -63,13 +63,12 @@ namespace WSHospital
                         Users user = md.Users.Where(p => p.Login.Equals(LOG.Text) && p.Password.Equals(PASS.Text)).FirstOrDefault();
                         UserWindow userWindow = UserWindow.getInst(user);
                         userWindow.Show();
-
-                        this.Close();
                     }
                 }
 
             }
-            
+
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
