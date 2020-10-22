@@ -39,23 +39,7 @@ namespace WSHospital.View
         public Analyzer()
         {
             sum = 0;
-            InitializeComponent();
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(JsonRequests));
-
-            WebRequest request = WebRequest.Create("https://localhost:44323/api/orders/ALEX%20B.B.");
-            WebResponse response = request.GetResponse();
-            using (Stream stream = response.GetResponseStream())
-            {
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    string line = "";
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        //JsonRequests jsonRequests = (JsonRequests)serializer.ReadObject(stream);
-                        MessageBox.Show(line);
-                    }
-                }
-            }
+            InitializeComponent();         
 
             Services services = new Services();
 
@@ -102,56 +86,74 @@ namespace WSHospital.View
             {
                 if (grid.SelectedItem == GetServices[i])
                 {
-                    MessageBox.Show($"{GetServices[i].id}" + " " + $"{GetServices[i].name}");
-
-                    using (ModelBD md = new ModelBD())
+                    if (GetServices[i].status == "IN PROGRESS")
                     {
-                        var serv = from ls in md.LabServices
-                                   join o in md.Orderr on ls.ID equals o.IDService
-                                   select new
-                                   {
-                                       IdPat = o.IDPatient,
-                                       Servcode = ls.ServiceCode,
-                                       Servid = ls.ID,
-
-                                       idord = o.ID
-                                   };
-
-                        foreach (var item in serv)
+                        WebRequest request = WebRequest.Create("https://localhost:44323/api/orders/ALEX%20B.B.");
+                        WebResponse response = request.GetResponse();
+                        using (Stream stream = response.GetResponseStream())
                         {
-                            if (item.idord == GetServices[i].id)
+                            using (StreamReader reader = new StreamReader(stream))
                             {
-                                JsonRequests json = new JsonRequests()
+                                string line = "";
+                                while ((line = reader.ReadLine()) != null)
                                 {
-                                    IDPat = item.IdPat,
-                                    ServCode = item.Servcode,
-                                    ServId = item.Servid
-                                };
-
-                                try
-                                {
-                                    XmlWriter writer = new XmlTextWriter(@"C:\\Users\\su.KBK\\Documents\\JsonSerialize.xml", null);
-                                    serializer.WriteObject(writer, json);
-                                    writer.Close();
-
-                                    MessageBox.Show("200");
+                                    //JsonRequests jsonRequests = (JsonRequests)serializer.ReadObject(stream);
+                                    MessageBox.Show(line);
                                 }
-                                catch(Exception ex)
+                            }
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"{GetServices[i].id}" + " " + $"{GetServices[i].name}");
+
+                        using (ModelBD md = new ModelBD())
+                        {
+                            var serv = from ls in md.LabServices
+                                       join o in md.Orderr on ls.ID equals o.IDService
+                                       select new
+                                       {
+                                           IdPat = o.IDPatient,
+                                           Servcode = ls.ServiceCode,
+                                           Servid = ls.ID,
+
+                                           idord = o.ID
+                                       };
+
+                            foreach (var item in serv)
+                            {
+                                if (item.idord == GetServices[i].id)
                                 {
-                                    MessageBox.Show("400: " + ex.Message);
+                                    JsonRequests json = new JsonRequests()
+                                    {
+                                        IDPat = item.IdPat,
+                                        ServCode = item.Servcode,
+                                        ServId = item.Servid
+                                    };
+
+                                    try
+                                    {
+                                        XmlWriter writer = new XmlTextWriter(@"C:\\Users\\su.KBK\\Documents\\JsonSerialize.xml", null);
+                                        serializer.WriteObject(writer, json);
+                                        writer.Close();
+
+                                        MessageBox.Show("200");
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show("400: " + ex.Message);
+                                    }
+
                                 }
 
                             }
-                            
+                            StatAnalizy();
                         }
-                    }
-
-                    break;
+                        break;
+                    }                
                 }
-            }
-
-            StatAnalizy();
-
+            }           
         }
 
         private async void StatAnalizy()
