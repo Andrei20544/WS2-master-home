@@ -360,7 +360,7 @@
 
         <Border Grid.Row="2" BorderThickness="0 2 0 0" BorderBrush="#FF031423">
             <Grid Grid.Row="2" Background="#FF131F2C">
-
+                
             </Grid>
         </Border>
 

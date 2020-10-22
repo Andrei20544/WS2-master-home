@@ -27,6 +27,11 @@ namespace WSHospital
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Sign();
+        }
+
+        public void Sign()
+        {
             if (LOG.Text.Length == 0 && PASS.Text.Length == 0)
             {
                 MessageBox.Show("Введите логин и пароль");
@@ -67,8 +72,6 @@ namespace WSHospital
                 }
 
             }
-
-
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

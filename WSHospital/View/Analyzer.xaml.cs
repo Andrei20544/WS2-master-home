@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
@@ -33,10 +34,28 @@ namespace WSHospital.View
     public partial class Analyzer : Window
     {
         public List<Services> GetServices;
+        public int sum;
 
         public Analyzer()
         {
+            sum = 0;
             InitializeComponent();
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(JsonRequests));
+
+            WebRequest request = WebRequest.Create("https://localhost:44323/api/orders/ALEX%20B.B.");
+            WebResponse response = request.GetResponse();
+            using (Stream stream = response.GetResponseStream())
+            {
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    string line = "";
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        //JsonRequests jsonRequests = (JsonRequests)serializer.ReadObject(stream);
+                        MessageBox.Show(line);
+                    }
+                }
+            }
 
             Services services = new Services();
 
@@ -46,7 +65,7 @@ namespace WSHospital.View
             {
                 var serv = from s in md.LabServices
                            join o in md.Orderr on s.ID equals o.IDService
-                           where o.Status == "OK"
+                           where o.Status == "OK" || o.Status == "IN PROGRESS"
                            select new
                            {
                                ID = o.ID,
@@ -66,6 +85,7 @@ namespace WSHospital.View
                         status = item.Stat,
                         cost = item.cost,
                     };
+                    sum++;
                     GetServices.Add(services);
                     grid.Items.Add(services);
                 }
@@ -78,11 +98,11 @@ namespace WSHospital.View
 
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(JsonRequests));
 
-            for(int i = 0; i < grid.Columns.Count + 5; i++)
+            for(int i = 0; i < sum; i++)
             {
                 if (grid.SelectedItem == GetServices[i])
                 {
-                    //MessageBox.Show($"{GetServices[i].id}, {GetServices[i].name}");
+                    MessageBox.Show($"{GetServices[i].id}" + " " + $"{GetServices[i].name}");
 
                     using (ModelBD md = new ModelBD())
                     {
@@ -130,7 +150,25 @@ namespace WSHospital.View
                 }
             }
 
+            StatAnalizy();
 
+        }
+
+        private async void StatAnalizy()
+        {
+            Prog.Value = 0;
+            Coml.Content = "";
+
+            for(int i = 0; i < 30; i++)
+            {
+                await Task.Delay(1000);
+                Coml.Content = "in progress";   
+                Prog.Value += 1;
+            }
+
+            //Получение результата
+
+            Coml.Content = "End";
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
