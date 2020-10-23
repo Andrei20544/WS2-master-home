@@ -37,7 +37,7 @@ namespace WSHospital.View
                                role = r.RoleName
                            };
 
-                foreach (var item in Gend)
+                foreach (var item in Gend.Distinct())
                 {
                     GendR.Items.Add(item.gender);
                 }

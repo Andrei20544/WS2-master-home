@@ -134,19 +134,25 @@ namespace WSHospital.View
                         {
                             using (ModelBD md = new ModelBD())
                             {
+                                MessageBox.Show($"{GetServices[i].id}" + " & " + $"{GetServices[i].name}" + " & " + $"{GetServices[i].status}");
 
-
-                                MessageBox.Show($"{GetServices[i].id}" + " " + $"{GetServices[i].name}");
-
-                                string URLSite = $"https://localhost:44323/api/orders/{GetNamPat(md,i)}";
+                                string URLSite = $"https://localhost:44323/api/orders/";
                                 StreamWriter sw = null;
 
-                                string PostData = "Posted=" + HttpUtility.UrlEncode("True") + "&X=" + HttpUtility.UrlEncode("Value");
+                                //[{"id":33,"idPatient":9,"idService":3,"status":"OK"}]
+
+                                int idOrder = GetServices[i].id;
+                                var order = md.Orderr.Where(p => p.ID.Equals(idOrder)).FirstOrDefault();
+
+                                string PostData = @"{" + '"' + "ID" + '"' + ":" + HttpUtility.UrlEncode(order.ID.ToString()) + ","
+                                                  + '"' + "IDPatient" + '"' + ":" + HttpUtility.UrlEncode(order.IDPatient.ToString()) + ","
+                                                  + '"' + "IDService" + '"' + ":" + HttpUtility.UrlEncode(order.IDService.ToString()) + ","
+                                                  + '"' + "Status" + '"' + ":" + HttpUtility.UrlEncode(order.Status.ToString()) + "}";
 
                                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URLSite);
                                 request.Method = "POST";
                                 request.ContentLength = PostData.Length;
-                                request.ContentType = "application/x-www-form-urlencoded";
+                                request.ContentType = "application/json";
                                 sw = new StreamWriter(request.GetRequestStream());
 
                                 byte[] sendBuffer = Encoding.ASCII.GetBytes(PostData);
@@ -162,55 +168,16 @@ namespace WSHospital.View
 
                                 strData.Dispose();
                                 strData.Close();
+
+                                StatAnalizy();
                             }
                         }
                         catch(Exception ex)
                         {
                             MessageBox.Show(ex.Message);
+                            Clipboard.SetText(ex.Message);
                         }
 
-                        //using (ModelBD md = new ModelBD())
-                        //{
-                        //    var serv = from ls in md.LabServices
-                        //               join o in md.Orderr on ls.ID equals o.IDService
-                        //               select new
-                        //               {
-                        //                   IdPat = o.IDPatient,
-                        //                   Servcode = ls.ServiceCode,
-                        //                   Servid = ls.ID,
-
-                        //                   idord = o.ID
-                        //               };
-
-                        //    foreach (var item in serv)
-                        //    {
-                        //        if (item.idord == GetServices[i].id)
-                        //        {
-                        //            JsonRequests json = new JsonRequests()
-                        //            {
-                        //                IDPat = item.IdPat,
-                        //                ServCode = item.Servcode,
-                        //                ServId = item.Servid
-                        //            };
-
-                        //            try
-                        //            {
-                        //                XmlWriter writer = new XmlTextWriter(@"C:\\Users\\su.KBK\\Documents\\JsonSerialize.xml", null);
-                        //                serializer.WriteObject(writer, json);
-                        //                writer.Close();
-
-                        //                MessageBox.Show("200");
-                        //            }
-                        //            catch (Exception ex)
-                        //            {
-                        //                MessageBox.Show("400: " + ex.Message);
-                        //            }
-
-                        //        }
-
-                        //    }
-                        //    StatAnalizy();
-                        //}
                         break;
                     }                
                 }
@@ -239,7 +206,7 @@ namespace WSHospital.View
 
                 try
                 {
-                    int? idpat = msPatId;
+                    int idpat = msPatId;
                     var order = md.Orderr.Where(p => p.IDPatient.Equals(idpat)).FirstOrDefault();
 
                     Orderr orderr = new Orderr
@@ -274,8 +241,6 @@ namespace WSHospital.View
                 Coml.Content = "in progress";   
                 Prog.Value += 1;
             }
-
-            //Получение результата
 
             Coml.Content = "End";
         }
